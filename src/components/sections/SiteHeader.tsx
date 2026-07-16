@@ -154,8 +154,8 @@ export default function SiteHeader() {
             className="relative w-full pointer-events-auto flex items-center flex-shrink-0 py-[9.45px] pl-19 pr-30"
           >
             <span className="sr-only">Funshine Career Consulting home page</span>
-            <span className="size-29 block flex-center">
-              <LogoIcon data-loader-target="logo" className="icon size-25 text-mercury" />
+            <span className="size-29 block flex-center shrink-0">
+              <LogoIcon data-loader-target="logo" width={25} height={25} className="icon size-25 shrink-0 text-mercury" />
             </span>
             <span
               data-loader-target="text"
