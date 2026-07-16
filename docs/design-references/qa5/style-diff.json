@@ -1,0 +1,632 @@
+{
+  "orig": {
+    "pill-text": {
+      "_text": "Outsource Consultants In",
+      "fontFamily": "\"GT America Mono\", sans-serif",
+      "fontSize": "9.99999px",
+      "fontWeight": "500",
+      "lineHeight": "9.99999px",
+      "letterSpacing": "normal",
+      "textTransform": "uppercase",
+      "color": "oklab(0.924815 -0.000173777 0.00834435)"
+    },
+    "nav-link": {
+      "_text": "About",
+      "fontFamily": "\"GT America Mono\", sans-serif",
+      "fontSize": "14px",
+      "fontWeight": "400",
+      "lineHeight": "18.2px",
+      "letterSpacing": "-0.699999px",
+      "textTransform": "uppercase",
+      "color": "oklab(0.924815 -0.000173777 0.00834435)"
+    },
+    "hero-title": {
+      "_text": "Outsource\nConsultants, I",
+      "fontFamily": "\"PP Neue Montreal\", sans-serif",
+      "fontSize": "160px",
+      "fontWeight": "500",
+      "lineHeight": "150px",
+      "letterSpacing": "normal",
+      "textTransform": "none",
+      "color": "oklab(0.999994 0.0000455678 0.0000200868)"
+    },
+    "hero-tagline": {
+      "_text": "Answering all ofyour bui",
+      "fontFamily": "\"PP Neue Montreal\", sans-serif",
+      "fontSize": "24px",
+      "fontWeight": "400",
+      "lineHeight": "24px",
+      "letterSpacing": "normal",
+      "textTransform": "none",
+      "color": "oklab(0.999994 0.0000455678 0.0000200868)"
+    },
+    "intro-main": {
+      "_text": "Our‍ team‍ of‍ over‍ 50‍",
+      "fontFamily": "\"PP Neue Montreal\", sans-serif",
+      "fontSize": "46px",
+      "fontWeight": "400",
+      "lineHeight": "46px",
+      "letterSpacing": "normal",
+      "textTransform": "none",
+      "color": "oklab(0.924815 -0.000173777 0.00834435)"
+    },
+    "intro-highlight": {
+      "_text": "From‍ the‍ first‍ idea‍ ",
+      "fontFamily": "\"GT America Mono\", sans-serif",
+      "fontSize": "12px",
+      "fontWeight": "400",
+      "lineHeight": "15.96px",
+      "letterSpacing": "normal",
+      "textTransform": "uppercase",
+      "color": "oklab(0.924815 -0.000173777 0.00834435)"
+    },
+    "services-word": {
+      "_text": "Our",
+      "fontFamily": "\"PP Neue Montreal\", sans-serif",
+      "fontSize": "160px",
+      "fontWeight": "500",
+      "lineHeight": "150px",
+      "letterSpacing": "normal",
+      "textTransform": "none",
+      "color": "oklab(0.372857 -0.0071817 -0.204536)"
+    },
+    "accordion-btn": {
+      "_text": "Construction Expediting",
+      "fontFamily": "\"PP Neue Montreal\", sans-serif",
+      "fontSize": "30px",
+      "fontWeight": "400",
+      "lineHeight": "30px",
+      "letterSpacing": "normal",
+      "textTransform": "none",
+      "color": "oklab(0.372857 -0.0071817 -0.204536)"
+    },
+    "process-h2": {
+      "_text": "Here‍",
+      "fontFamily": "\"PP Neue Montreal\", sans-serif",
+      "fontSize": "160px",
+      "fontWeight": "500",
+      "lineHeight": "150px",
+      "letterSpacing": "normal",
+      "textTransform": "none",
+      "color": "oklab(0.372857 -0.0071817 -0.204536)"
+    },
+    "process-card-h3": {
+      "_text": "Strategy",
+      "fontFamily": "\"PP Neue Montreal\", sans-serif",
+      "fontSize": "30px",
+      "fontWeight": "400",
+      "lineHeight": "30px",
+      "letterSpacing": "normal",
+      "textTransform": "none",
+      "color": "oklab(0.372857 -0.0071817 -0.204536)"
+    },
+    "process-card-p": {
+      "_text": "Experts in Building and ",
+      "fontFamily": "\"GT America Mono\", sans-serif",
+      "fontSize": "12px",
+      "fontWeight": "400",
+      "lineHeight": "15.96px",
+      "letterSpacing": "normal",
+      "textTransform": "uppercase",
+      "color": "oklab(0.372857 -0.0071817 -0.204536)"
+    },
+    "projects-h2": {
+      "_text": "Most‍ Recent‍",
+      "fontFamily": "\"PP Neue Montreal\", sans-serif",
+      "fontSize": "160px",
+      "fontWeight": "500",
+      "lineHeight": "150px",
+      "letterSpacing": "normal",
+      "textTransform": "none",
+      "color": "oklab(0.372857 -0.0071817 -0.204536)"
+    },
+    "project-h3": {
+      "_text": "Dolce‍ &‍ Gabbana‍ Bouti",
+      "fontFamily": "\"PP Neue Montreal\", sans-serif",
+      "fontSize": "36px",
+      "fontWeight": "400",
+      "lineHeight": "36px",
+      "letterSpacing": "normal",
+      "textTransform": "none",
+      "color": "oklab(0.372857 -0.0071817 -0.204536)"
+    },
+    "news-card-h3": {
+      "_text": "Building Inclusivity: Ce",
+      "fontFamily": "\"PP Neue Montreal\", sans-serif",
+      "fontSize": "18px",
+      "fontWeight": "400",
+      "lineHeight": "18px",
+      "letterSpacing": "normal",
+      "textTransform": "none",
+      "color": "rgb(232, 230, 224)"
+    },
+    "testimonial-quote": {
+      "_text": "“I‍ have‍ worked‍ with‍ ",
+      "fontFamily": "\"PP Neue Montreal\", sans-serif",
+      "fontSize": "46px",
+      "fontWeight": "400",
+      "lineHeight": "46px",
+      "letterSpacing": "normal",
+      "textTransform": "none",
+      "color": "oklab(0.372857 -0.0071817 -0.204536)"
+    },
+    "footer-link": {
+      "_text": "About",
+      "fontFamily": "ui-sans-serif, system-ui, -apple-system, \"system-ui\", \"Segoe UI\", Roboto, \"Helvetica Neue\", Arial, \"Noto Sans\", sans-serif, \"Apple Color Emoji\", \"Segoe UI Emoji\", \"Segoe UI Symbol\", \"Noto Color Emoji\"",
+      "fontSize": "16px",
+      "fontWeight": "400",
+      "lineHeight": "24px",
+      "letterSpacing": "normal",
+      "textTransform": "none",
+      "color": "rgb(0, 0, 0)"
+    }
+  },
+  "clone": {
+    "pill-text": {
+      "_text": "Outsource Consultants In",
+      "fontFamily": "gtaMono, \"gtaMono Fallback\", monospace",
+      "fontSize": "10px",
+      "fontWeight": "500",
+      "lineHeight": "10px",
+      "letterSpacing": "normal",
+      "textTransform": "uppercase",
+      "color": "rgb(232, 230, 224)"
+    },
+    "nav-link": {
+      "_text": "About",
+      "fontFamily": "gtaMono, \"gtaMono Fallback\", monospace",
+      "fontSize": "12px",
+      "fontWeight": "400",
+      "lineHeight": "15.96px",
+      "letterSpacing": "normal",
+      "textTransform": "uppercase",
+      "color": "rgb(232, 230, 224)"
+    },
+    "hero-title": {
+      "_text": "Outsource",
+      "fontFamily": "ppNeue, \"ppNeue Fallback\", sans-serif",
+      "fontSize": "160px",
+      "fontWeight": "500",
+      "lineHeight": "150px",
+      "letterSpacing": "normal",
+      "textTransform": "none",
+      "color": "rgb(255, 255, 255)"
+    },
+    "hero-tagline": {
+      "_text": "Answering‍ all‍ of",
+      "fontFamily": "ppNeue, \"ppNeue Fallback\", sans-serif",
+      "fontSize": "24px",
+      "fontWeight": "400",
+      "lineHeight": "24px",
+      "letterSpacing": "normal",
+      "textTransform": "none",
+      "color": "rgb(255, 255, 255)"
+    },
+    "intro-main": {
+      "_text": "Our‍ team‍ of‍ over‍ 50‍",
+      "fontFamily": "ppNeue, \"ppNeue Fallback\", sans-serif",
+      "fontSize": "26px",
+      "fontWeight": "400",
+      "lineHeight": "26px",
+      "letterSpacing": "normal",
+      "textTransform": "none",
+      "color": "rgb(232, 230, 224)"
+    },
+    "intro-highlight": {
+      "_text": "From‍ the‍ first‍ idea‍ ",
+      "fontFamily": "gtaMono, \"gtaMono Fallback\", monospace",
+      "fontSize": "14px",
+      "fontWeight": "400",
+      "lineHeight": "18.62px",
+      "letterSpacing": "normal",
+      "textTransform": "uppercase",
+      "color": "rgb(232, 230, 224)"
+    },
+    "services-word": {
+      "_text": "Our",
+      "fontFamily": "ppNeue, \"ppNeue Fallback\", sans-serif",
+      "fontSize": "160px",
+      "fontWeight": "500",
+      "lineHeight": "150px",
+      "letterSpacing": "normal",
+      "textTransform": "none",
+      "color": "rgb(25, 37, 170)"
+    },
+    "accordion-btn": {
+      "_text": "Construction Expediting",
+      "fontFamily": "ppNeue, \"ppNeue Fallback\", sans-serif",
+      "fontSize": "30px",
+      "fontWeight": "400",
+      "lineHeight": "30px",
+      "letterSpacing": "normal",
+      "textTransform": "none",
+      "color": "rgb(25, 37, 170)"
+    },
+    "process-h2": {
+      "_text": "Here",
+      "fontFamily": "ppNeue, \"ppNeue Fallback\", sans-serif",
+      "fontSize": "160px",
+      "fontWeight": "500",
+      "lineHeight": "150px",
+      "letterSpacing": "normal",
+      "textTransform": "none",
+      "color": "rgb(25, 37, 170)"
+    },
+    "process-card-h3": {
+      "_text": "Strategy",
+      "fontFamily": "ppNeue, \"ppNeue Fallback\", sans-serif",
+      "fontSize": "24px",
+      "fontWeight": "400",
+      "lineHeight": "24px",
+      "letterSpacing": "normal",
+      "textTransform": "none",
+      "color": "rgb(25, 37, 170)"
+    },
+    "process-card-p": {
+      "_text": "Experts in Building and ",
+      "fontFamily": "gtaMono, \"gtaMono Fallback\", monospace",
+      "fontSize": "12px",
+      "fontWeight": "400",
+      "lineHeight": "15.96px",
+      "letterSpacing": "normal",
+      "textTransform": "uppercase",
+      "color": "rgb(25, 37, 170)"
+    },
+    "projects-h2": {
+      "_text": "Most‍ RecentProjects",
+      "fontFamily": "ppNeue, \"ppNeue Fallback\", sans-serif",
+      "fontSize": "160px",
+      "fontWeight": "500",
+      "lineHeight": "150px",
+      "letterSpacing": "normal",
+      "textTransform": "none",
+      "color": "rgb(25, 37, 170)"
+    },
+    "project-h3": {
+      "_text": "Dolce‍ &‍ Gabbana‍ Bouti",
+      "fontFamily": "ppNeue, \"ppNeue Fallback\", sans-serif",
+      "fontSize": "36px",
+      "fontWeight": "400",
+      "lineHeight": "36px",
+      "letterSpacing": "normal",
+      "textTransform": "none",
+      "color": "rgb(25, 37, 170)"
+    },
+    "news-card-h3": {
+      "_text": "Building Inclusivity: Ce",
+      "fontFamily": "ppNeue, \"ppNeue Fallback\", sans-serif",
+      "fontSize": "18px",
+      "fontWeight": "400",
+      "lineHeight": "18px",
+      "letterSpacing": "normal",
+      "textTransform": "none",
+      "color": "rgb(232, 230, 224)"
+    },
+    "testimonial-quote": {
+      "_text": "“I have worked with Outs",
+      "fontFamily": "ppNeue, \"ppNeue Fallback\", sans-serif",
+      "fontSize": "32px",
+      "fontWeight": "400",
+      "lineHeight": "32px",
+      "letterSpacing": "normal",
+      "textTransform": "none",
+      "color": "rgb(25, 37, 170)"
+    },
+    "footer-link": {
+      "_text": "_",
+      "fontFamily": "ppNeue, \"ppNeue Fallback\", sans-serif",
+      "fontSize": "16px",
+      "fontWeight": "400",
+      "lineHeight": "24px",
+      "letterSpacing": "normal",
+      "textTransform": "none",
+      "color": "rgb(232, 230, 224)"
+    }
+  },
+  "report": {
+    "pill-text": {
+      "text": {
+        "orig": "Outsource Consultants In",
+        "clone": "Outsource Consultants In"
+      },
+      "diff": {
+        "fontFamily": {
+          "orig": "\"GT America Mono\", sans-serif",
+          "clone": "gtaMono, \"gtaMono Fallback\", monospace"
+        },
+        "fontSize": {
+          "orig": "9.99999px",
+          "clone": "10px"
+        },
+        "lineHeight": {
+          "orig": "9.99999px",
+          "clone": "10px"
+        },
+        "color": {
+          "orig": "oklab(0.924815 -0.000173777 0.00834435)",
+          "clone": "rgb(232, 230, 224)"
+        }
+      }
+    },
+    "nav-link": {
+      "text": {
+        "orig": "About",
+        "clone": "About"
+      },
+      "diff": {
+        "fontFamily": {
+          "orig": "\"GT America Mono\", sans-serif",
+          "clone": "gtaMono, \"gtaMono Fallback\", monospace"
+        },
+        "fontSize": {
+          "orig": "14px",
+          "clone": "12px"
+        },
+        "lineHeight": {
+          "orig": "18.2px",
+          "clone": "15.96px"
+        },
+        "letterSpacing": {
+          "orig": "-0.699999px",
+          "clone": "normal"
+        },
+        "color": {
+          "orig": "oklab(0.924815 -0.000173777 0.00834435)",
+          "clone": "rgb(232, 230, 224)"
+        }
+      }
+    },
+    "hero-title": {
+      "text": {
+        "orig": "Outsource\nConsultants, I",
+        "clone": "Outsource"
+      },
+      "diff": {
+        "fontFamily": {
+          "orig": "\"PP Neue Montreal\", sans-serif",
+          "clone": "ppNeue, \"ppNeue Fallback\", sans-serif"
+        },
+        "color": {
+          "orig": "oklab(0.999994 0.0000455678 0.0000200868)",
+          "clone": "rgb(255, 255, 255)"
+        }
+      }
+    },
+    "hero-tagline": {
+      "text": {
+        "orig": "Answering all ofyour bui",
+        "clone": "Answering‍ all‍ of"
+      },
+      "diff": {
+        "fontFamily": {
+          "orig": "\"PP Neue Montreal\", sans-serif",
+          "clone": "ppNeue, \"ppNeue Fallback\", sans-serif"
+        },
+        "color": {
+          "orig": "oklab(0.999994 0.0000455678 0.0000200868)",
+          "clone": "rgb(255, 255, 255)"
+        }
+      }
+    },
+    "intro-main": {
+      "text": {
+        "orig": "Our‍ team‍ of‍ over‍ 50‍",
+        "clone": "Our‍ team‍ of‍ over‍ 50‍"
+      },
+      "diff": {
+        "fontFamily": {
+          "orig": "\"PP Neue Montreal\", sans-serif",
+          "clone": "ppNeue, \"ppNeue Fallback\", sans-serif"
+        },
+        "fontSize": {
+          "orig": "46px",
+          "clone": "26px"
+        },
+        "lineHeight": {
+          "orig": "46px",
+          "clone": "26px"
+        },
+        "color": {
+          "orig": "oklab(0.924815 -0.000173777 0.00834435)",
+          "clone": "rgb(232, 230, 224)"
+        }
+      }
+    },
+    "intro-highlight": {
+      "text": {
+        "orig": "From‍ the‍ first‍ idea‍ ",
+        "clone": "From‍ the‍ first‍ idea‍ "
+      },
+      "diff": {
+        "fontFamily": {
+          "orig": "\"GT America Mono\", sans-serif",
+          "clone": "gtaMono, \"gtaMono Fallback\", monospace"
+        },
+        "fontSize": {
+          "orig": "12px",
+          "clone": "14px"
+        },
+        "lineHeight": {
+          "orig": "15.96px",
+          "clone": "18.62px"
+        },
+        "color": {
+          "orig": "oklab(0.924815 -0.000173777 0.00834435)",
+          "clone": "rgb(232, 230, 224)"
+        }
+      }
+    },
+    "services-word": {
+      "text": {
+        "orig": "Our",
+        "clone": "Our"
+      },
+      "diff": {
+        "fontFamily": {
+          "orig": "\"PP Neue Montreal\", sans-serif",
+          "clone": "ppNeue, \"ppNeue Fallback\", sans-serif"
+        },
+        "color": {
+          "orig": "oklab(0.372857 -0.0071817 -0.204536)",
+          "clone": "rgb(25, 37, 170)"
+        }
+      }
+    },
+    "accordion-btn": {
+      "text": {
+        "orig": "Construction Expediting",
+        "clone": "Construction Expediting"
+      },
+      "diff": {
+        "fontFamily": {
+          "orig": "\"PP Neue Montreal\", sans-serif",
+          "clone": "ppNeue, \"ppNeue Fallback\", sans-serif"
+        },
+        "color": {
+          "orig": "oklab(0.372857 -0.0071817 -0.204536)",
+          "clone": "rgb(25, 37, 170)"
+        }
+      }
+    },
+    "process-h2": {
+      "text": {
+        "orig": "Here‍",
+        "clone": "Here"
+      },
+      "diff": {
+        "fontFamily": {
+          "orig": "\"PP Neue Montreal\", sans-serif",
+          "clone": "ppNeue, \"ppNeue Fallback\", sans-serif"
+        },
+        "color": {
+          "orig": "oklab(0.372857 -0.0071817 -0.204536)",
+          "clone": "rgb(25, 37, 170)"
+        }
+      }
+    },
+    "process-card-h3": {
+      "text": {
+        "orig": "Strategy",
+        "clone": "Strategy"
+      },
+      "diff": {
+        "fontFamily": {
+          "orig": "\"PP Neue Montreal\", sans-serif",
+          "clone": "ppNeue, \"ppNeue Fallback\", sans-serif"
+        },
+        "fontSize": {
+          "orig": "30px",
+          "clone": "24px"
+        },
+        "lineHeight": {
+          "orig": "30px",
+          "clone": "24px"
+        },
+        "color": {
+          "orig": "oklab(0.372857 -0.0071817 -0.204536)",
+          "clone": "rgb(25, 37, 170)"
+        }
+      }
+    },
+    "process-card-p": {
+      "text": {
+        "orig": "Experts in Building and ",
+        "clone": "Experts in Building and "
+      },
+      "diff": {
+        "fontFamily": {
+          "orig": "\"GT America Mono\", sans-serif",
+          "clone": "gtaMono, \"gtaMono Fallback\", monospace"
+        },
+        "color": {
+          "orig": "oklab(0.372857 -0.0071817 -0.204536)",
+          "clone": "rgb(25, 37, 170)"
+        }
+      }
+    },
+    "projects-h2": {
+      "text": {
+        "orig": "Most‍ Recent‍",
+        "clone": "Most‍ RecentProjects"
+      },
+      "diff": {
+        "fontFamily": {
+          "orig": "\"PP Neue Montreal\", sans-serif",
+          "clone": "ppNeue, \"ppNeue Fallback\", sans-serif"
+        },
+        "color": {
+          "orig": "oklab(0.372857 -0.0071817 -0.204536)",
+          "clone": "rgb(25, 37, 170)"
+        }
+      }
+    },
+    "project-h3": {
+      "text": {
+        "orig": "Dolce‍ &‍ Gabbana‍ Bouti",
+        "clone": "Dolce‍ &‍ Gabbana‍ Bouti"
+      },
+      "diff": {
+        "fontFamily": {
+          "orig": "\"PP Neue Montreal\", sans-serif",
+          "clone": "ppNeue, \"ppNeue Fallback\", sans-serif"
+        },
+        "color": {
+          "orig": "oklab(0.372857 -0.0071817 -0.204536)",
+          "clone": "rgb(25, 37, 170)"
+        }
+      }
+    },
+    "news-card-h3": {
+      "text": {
+        "orig": "Building Inclusivity: Ce",
+        "clone": "Building Inclusivity: Ce"
+      },
+      "diff": {
+        "fontFamily": {
+          "orig": "\"PP Neue Montreal\", sans-serif",
+          "clone": "ppNeue, \"ppNeue Fallback\", sans-serif"
+        }
+      }
+    },
+    "testimonial-quote": {
+      "text": {
+        "orig": "“I‍ have‍ worked‍ with‍ ",
+        "clone": "“I have worked with Outs"
+      },
+      "diff": {
+        "fontFamily": {
+          "orig": "\"PP Neue Montreal\", sans-serif",
+          "clone": "ppNeue, \"ppNeue Fallback\", sans-serif"
+        },
+        "fontSize": {
+          "orig": "46px",
+          "clone": "32px"
+        },
+        "lineHeight": {
+          "orig": "46px",
+          "clone": "32px"
+        },
+        "color": {
+          "orig": "oklab(0.372857 -0.0071817 -0.204536)",
+          "clone": "rgb(25, 37, 170)"
+        }
+      }
+    },
+    "footer-link": {
+      "text": {
+        "orig": "About",
+        "clone": "_"
+      },
+      "diff": {
+        "fontFamily": {
+          "orig": "ui-sans-serif, system-ui, -apple-system, \"system-ui\", \"Segoe UI\", Roboto, \"Helvetica Neue\", Arial, \"Noto Sans\", sans-serif, \"Apple Color Emoji\", \"Segoe UI Emoji\", \"Segoe UI Symbol\", \"Noto Color Emoji\"",
+          "clone": "ppNeue, \"ppNeue Fallback\", sans-serif"
+        },
+        "color": {
+          "orig": "rgb(0, 0, 0)",
+          "clone": "rgb(232, 230, 224)"
+        }
+      }
+    }
+  }
+}

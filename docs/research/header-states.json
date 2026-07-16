@@ -1,0 +1,140 @@
+{
+  "headerTop": {
+    "scrollY": 0,
+    "navCount": 32,
+    "navStyle": {
+      "opacity": "1",
+      "visibility": "visible",
+      "transform": "none",
+      "clipPath": "none",
+      "transition": "all"
+    },
+    "firstLink": {
+      "text": "Outsource Consultants, Inc. home pageOutsource Consultants Inc.",
+      "opacity": "1",
+      "visibility": "visible",
+      "transform": "none",
+      "clipPath": "none",
+      "transition": "all"
+    },
+    "linkParent": {
+      "cls": "b-blue b-1px lg:w-auto lg:col-span-6 lg:justify-self-start will-change-transform",
+      "opacity": "1",
+      "transform": "none",
+      "clipPath": "none",
+      "overflow": "visible",
+      "height": "49.8594px",
+      "transition": "all"
+    },
+    "menuBtn": [
+      {
+        "text": "Menu",
+        "opacity": "1",
+        "visibility": "visible",
+        "display": "flex",
+        "transform": "none",
+        "bg": "oklab(0.999994 0.0000455678 0.0000200868)",
+        "color": "oklab(0.372857 -0.0071817 -0.204536)",
+        "rect": {
+          "x": 1379,
+          "y": 16,
+          "w": 78,
+          "h": 46
+        },
+        "transition": "all"
+      }
+    ]
+  },
+  "headerScrolled": {
+    "scrollY": 800,
+    "navCount": 32,
+    "navStyle": {
+      "opacity": "1",
+      "visibility": "visible",
+      "transform": "none",
+      "clipPath": "none",
+      "transition": "all"
+    },
+    "firstLink": {
+      "text": "Outsource Consultants, Inc. home pageOutsource Consultants Inc.",
+      "opacity": "1",
+      "visibility": "visible",
+      "transform": "none",
+      "clipPath": "none",
+      "transition": "all"
+    },
+    "linkParent": {
+      "cls": "b-blue b-1px lg:w-auto lg:col-span-6 lg:justify-self-start will-change-transform",
+      "opacity": "1",
+      "transform": "none",
+      "clipPath": "none",
+      "overflow": "visible",
+      "height": "49.8594px",
+      "transition": "all"
+    },
+    "menuBtn": [
+      {
+        "text": "Menu",
+        "opacity": "1",
+        "visibility": "visible",
+        "display": "flex",
+        "transform": "none",
+        "bg": "oklab(0.999994 0.0000455678 0.0000200868)",
+        "color": "oklab(0.372857 -0.0071817 -0.204536)",
+        "rect": {
+          "x": 1298,
+          "y": 16,
+          "w": 78,
+          "h": 46
+        },
+        "transition": "all"
+      }
+    ]
+  },
+  "headerBackTop": {
+    "scrollY": 0,
+    "navCount": 32,
+    "navStyle": {
+      "opacity": "1",
+      "visibility": "visible",
+      "transform": "none",
+      "clipPath": "none",
+      "transition": "all"
+    },
+    "firstLink": {
+      "text": "Outsource Consultants, Inc. home pageOutsource Consultants Inc.",
+      "opacity": "1",
+      "visibility": "visible",
+      "transform": "none",
+      "clipPath": "none",
+      "transition": "all"
+    },
+    "linkParent": {
+      "cls": "b-blue b-1px lg:w-auto lg:col-span-6 lg:justify-self-start will-change-transform",
+      "opacity": "1",
+      "transform": "none",
+      "clipPath": "none",
+      "overflow": "visible",
+      "height": "49.8594px",
+      "transition": "all"
+    },
+    "menuBtn": [
+      {
+        "text": "Menu",
+        "opacity": "1",
+        "visibility": "visible",
+        "display": "flex",
+        "transform": "none",
+        "bg": "oklab(0.999994 0.0000455678 0.0000200868)",
+        "color": "oklab(0.372857 -0.0071817 -0.204536)",
+        "rect": {
+          "x": 1379,
+          "y": 16,
+          "w": 78,
+          "h": 46
+        },
+        "transition": "all"
+      }
+    ]
+  }
+}

@@ -1,0 +1,346 @@
+{
+  "globals": {
+    "htmlClass": "lenis",
+    "bodyClass": "smoothscroll-body smoothscroll-enabled",
+    "lenis": true,
+    "bodyStyle": {
+      "fontFamily": "ui-sans-serif, system-ui, -apple-system, \"system-ui\", \"Segoe UI\", Roboto, \"Helvetica Neue\", Arial, \"Noto Sans\", sans-serif, \"Apple Color Emoji\", \"Segoe UI Emoji\", \"Segoe UI Symbol\", \"Noto Color Emoji\"",
+      "fontSize": "16px",
+      "backgroundColor": "rgba(0, 0, 0, 0)",
+      "color": "rgb(0, 0, 0)",
+      "lineHeight": "24px"
+    },
+    "scrollBehavior": "auto"
+  },
+  "headerAt0": {
+    "className": "fixed left-0 top-15 w-full px-15 z-1000 max-h-screen pointer-events-none",
+    "position": "fixed",
+    "top": "15px",
+    "background": "rgba(0, 0, 0, 0)",
+    "transform": "none",
+    "opacity": "1",
+    "height": 49.859375
+  },
+  "headerStates": [
+    {
+      "y": 0,
+      "transform": "none",
+      "opacity": "1",
+      "bg": "rgba(0, 0, 0, 0)",
+      "visibility": "visible",
+      "clip": "none"
+    },
+    {
+      "y": 600,
+      "transform": "none",
+      "opacity": "1",
+      "bg": "rgba(0, 0, 0, 0)",
+      "visibility": "visible",
+      "clip": "none"
+    },
+    {
+      "y": 1200,
+      "transform": "none",
+      "opacity": "1",
+      "bg": "rgba(0, 0, 0, 0)",
+      "visibility": "visible",
+      "clip": "none"
+    },
+    {
+      "y": 1800,
+      "transform": "none",
+      "opacity": "1",
+      "bg": "rgba(0, 0, 0, 0)",
+      "visibility": "visible",
+      "clip": "none"
+    },
+    {
+      "y": 2400,
+      "transform": "none",
+      "opacity": "1",
+      "bg": "rgba(0, 0, 0, 0)",
+      "visibility": "visible",
+      "clip": "none"
+    }
+  ],
+  "topology": [
+    {
+      "tag": "div",
+      "className": "",
+      "topAbs": 0,
+      "height": 7103,
+      "bg": "rgba(0, 0, 0, 0)",
+      "color": "rgb(0, 0, 0)",
+      "position": "static",
+      "zIndex": "auto",
+      "firstText": "Outsource Consultants, Inc. | Outsource | Consultants, Inc. |  | Answering all of | your building codes | needs. |  | Our team of over 5"
+    },
+    {
+      "tag": "section",
+      "className": "px-15 relative h-100svh",
+      "topAbs": 0,
+      "height": 900,
+      "bg": "rgba(0, 0, 0, 0)",
+      "color": "rgb(0, 0, 0)",
+      "position": "relative",
+      "zIndex": "auto",
+      "firstText": "Outsource Consultants, Inc. | Outsource | Consultants, Inc. |  | Answering all of | your building codes | needs."
+    },
+    {
+      "tag": "section",
+      "className": "px-15 relative my-grid min-h-100vh content-start bg-blue text-mercury pt-60 pb-76 lg:pt-80 lg:pb-112 ipadpro:min-h-auto",
+      "topAbs": 900,
+      "height": 900,
+      "bg": "oklab(0.372857 -0.0071817 -0.204536)",
+      "color": "oklab(0.924815 -0.000173777 0.00834435)",
+      "position": "relative",
+      "zIndex": "auto",
+      "firstText": "Our team of over 50 in-house consultants in New York City helps clients navigate even the toughest building code and zon"
+    },
+    {
+      "tag": "section",
+      "className": "px-15 pt-50 my-grid grid-rows-[repeat(2,auto)] content-start min-h-100svh ipadpro:min-h-auto",
+      "topAbs": 1800,
+      "height": 1044,
+      "bg": "rgba(0, 0, 0, 0)",
+      "color": "rgb(0, 0, 0)",
+      "position": "static",
+      "zIndex": "auto",
+      "firstText": "Our Services | Our | Services | Construction Expediting |  | WE ACCELERATE APPROVALS, KEEP AGENCIES MOVING, AND ELIMINATE DELAYS F"
+    },
+    {
+      "tag": "section",
+      "className": "px-15 relative overflow-hidden z-1 pt-18 pb-60 lg:pb-160",
+      "topAbs": 2844,
+      "height": 1135,
+      "bg": "rgba(0, 0, 0, 0)",
+      "color": "rgb(0, 0, 0)",
+      "position": "relative",
+      "zIndex": "1",
+      "firstText": "PROCESS | [OCI.2] | Here | at every | step |  | NAVIGATING REGULATORY AGENCIES CAN SEEM LIKE AN INSURMOUNTABLE TASK FOR ARCHITECTS, "
+    },
+    {
+      "tag": "section",
+      "className": "px-15 pb-15",
+      "topAbs": 3979,
+      "height": 1406,
+      "bg": "rgba(0, 0, 0, 0)",
+      "color": "rgb(0, 0, 0)",
+      "position": "static",
+      "zIndex": "auto",
+      "firstText": "Most Recent Projects | 01 | RETAIL | Dolce & Gabbana Boutique | 02 | RETAIL | Tiffany Flagship | 03 | HOTELS | Dream Hotel | VIEW ALL PROJEC"
+    },
+    {
+      "tag": "section",
+      "className": "px-15 bg-white pt-50 pb-56 lg:pb-0",
+      "topAbs": 5385,
+      "height": 790,
+      "bg": "oklab(0.999994 0.0000455678 0.0000200868)",
+      "color": "rgb(0, 0, 0)",
+      "position": "static",
+      "zIndex": "auto",
+      "firstText": "TESTIMONIALS | [OCI.3] | Testimonials | “I‍ have‍ worked‍ with‍ Outsource‍ for‍ many‍ | years‍ on‍ various‍ projects,‍ including"
+    },
+    {
+      "tag": "section",
+      "className": "px-15 my-grid overflow-hidden pt-50 pb-64 lg:pb-100",
+      "topAbs": 6175,
+      "height": 928,
+      "bg": "rgba(0, 0, 0, 0)",
+      "color": "rgb(0, 0, 0)",
+      "position": "static",
+      "zIndex": "auto",
+      "firstText": "LATEST NEWS | [ | VIEW ALL NEWS | ] | 02.12 | CONTRACTORS | Building Inclusivity: Celebrating Black History in Construction, Archite"
+    },
+    {
+      "tag": "header",
+      "className": "fixed left-0 top-15 w-full px-15 z-1000 max-h-screen pointer-events-none",
+      "topAbs": 6893,
+      "height": 50,
+      "bg": "rgba(0, 0, 0, 0)",
+      "color": "rgb(0, 0, 0)",
+      "position": "fixed",
+      "zIndex": "1000",
+      "firstText": "Outsource Consultants, Inc. home page | OUTSOURCE CONSULTANTS INC. | MENU"
+    },
+    {
+      "tag": "footer",
+      "className": "px-15 my-grid bg-blue pt-50 pb-20 lg:pt-20 lg:pb-26 js-footer",
+      "topAbs": 7103,
+      "height": 675,
+      "bg": "oklab(0.372857 -0.0071817 -0.204536)",
+      "color": "rgb(0, 0, 0)",
+      "position": "static",
+      "zIndex": "auto",
+      "firstText": "_ | _ | _ | _ | _ | _ | _ | _ | _ | _ | _ | _ | _ | _ | MADE BY BUZZWORTHY | _ | | | _ | EMAIL ADDRESS FOR NEWSLETTER SUBSCRIPTION | _"
+    }
+  ],
+  "assets": {
+    "images": [
+      {
+        "src": "",
+        "alt": "",
+        "w": 0,
+        "h": 0,
+        "cls": "invisible",
+        "parentCls": "overflow-hidden absolute h-full w-full inset-0",
+        "position": "static"
+      },
+      {
+        "src": "",
+        "alt": "",
+        "w": 0,
+        "h": 0,
+        "cls": "invisible",
+        "parentCls": "overflow-hidden w-49% aspect-340/240",
+        "position": "static"
+      },
+      {
+        "src": "",
+        "alt": "",
+        "w": 0,
+        "h": 0,
+        "cls": "invisible",
+        "parentCls": "overflow-hidden w-49% aspect-340/240",
+        "position": "static"
+      },
+      {
+        "src": "",
+        "alt": "",
+        "w": 0,
+        "h": 0,
+        "cls": "invisible",
+        "parentCls": "overflow-hidden w-49% aspect-340/240",
+        "position": "static"
+      },
+      {
+        "src": "",
+        "alt": "",
+        "w": 0,
+        "h": 0,
+        "cls": "invisible",
+        "parentCls": "overflow-hidden w-49% aspect-340/240",
+        "position": "static"
+      },
+      {
+        "src": "",
+        "alt": "",
+        "w": 0,
+        "h": 0,
+        "cls": "invisible",
+        "parentCls": "overflow-hidden w-49% aspect-340/240",
+        "position": "static"
+      },
+      {
+        "src": "",
+        "alt": "",
+        "w": 0,
+        "h": 0,
+        "cls": "invisible",
+        "parentCls": "overflow-hidden w-49% aspect-340/240",
+        "position": "static"
+      },
+      {
+        "src": "",
+        "alt": "",
+        "w": 0,
+        "h": 0,
+        "cls": "invisible",
+        "parentCls": "overflow-hidden relative group w-full mt-24 aspect-385/260",
+        "position": "static"
+      },
+      {
+        "src": "",
+        "alt": "",
+        "w": 0,
+        "h": 0,
+        "cls": "invisible",
+        "parentCls": "overflow-hidden relative group w-full mt-24 aspect-385/260",
+        "position": "static"
+      },
+      {
+        "src": "",
+        "alt": "",
+        "w": 0,
+        "h": 0,
+        "cls": "invisible",
+        "parentCls": "overflow-hidden relative group w-full mt-24 aspect-385/260",
+        "position": "static"
+      },
+      {
+        "src": "https://oci-awards.cdn.prismic.io/oci-awards/aYeO690YXLCxVj7r_Gensler_logo1.svg?width=320",
+        "alt": "",
+        "w": 560,
+        "h": 128,
+        "cls": "w-auto h-100% object-contain",
+        "parentCls": "relative lg:-translate-x-50% lg:h-60 lg:flex lg:items-center",
+        "position": "static"
+      },
+      {
+        "src": "",
+        "alt": "",
+        "w": 0,
+        "h": 0,
+        "cls": "invisible",
+        "parentCls": "overflow-hidden w-full h-full grid-stack",
+        "position": "static"
+      },
+      {
+        "src": "",
+        "alt": "",
+        "w": 0,
+        "h": 0,
+        "cls": "invisible",
+        "parentCls": "overflow-hidden w-full h-full grid-stack",
+        "position": "static"
+      },
+      {
+        "src": "",
+        "alt": "",
+        "w": 0,
+        "h": 0,
+        "cls": "invisible",
+        "parentCls": "overflow-hidden w-full h-full grid-stack",
+        "position": "static"
+      },
+      {
+        "src": "",
+        "alt": "",
+        "w": 0,
+        "h": 0,
+        "cls": "invisible",
+        "parentCls": "overflow-hidden w-full h-full grid-stack",
+        "position": "static"
+      }
+    ],
+    "videos": [],
+    "bgImages": [],
+    "svgCount": 33,
+    "svgSources": [
+      "326:icon size-full | js-header-logo",
+      "181:icon h-25 w-17 transition-color-500 text-white",
+      "200:icon w-20 h-9 -mt-[0.3em] text-blue",
+      "316:icon w-18 h-18 mt-6 inline-block transform-origin-cc shrink-",
+      "281:icon col-start-1 row-start-1 w-14 h-8 mr-11 mt--1 text-blue",
+      "213:icon col-start-2 row-start-1 w-14 h-8 mt--1 text-blue ml-11 ",
+      "321:icon w-18 h-18 mt-6 inline-block transform-origin-cc shrink-",
+      "274:icon size-53% text-blue scale-0 origin-c | js-arrow",
+      "201:icon arrow lg:rotate-90 scale-x-[-1]",
+      "213:icon arrow text-white! lg:rotate-90 scale-x-[-1]",
+      "188:icon arrow lg:rotate-90",
+      "200:icon arrow text-white! lg:rotate-90",
+      "357:icon size-40% text-blue origin-c will-change-transform | js-",
+      "1880:size-71.6vw lg:size-29vw | js-footer-logo",
+      "203:icon w-20 h-9 -mt-[0.3em] text-mercury"
+    ],
+    "favicons": [
+      {
+        "rel": "icon",
+        "href": "https://oci.madebybuzzworthy.com/favicon.ico"
+      }
+    ],
+    "canvases": 1
+  },
+  "pageHeight": 7786,
+  "mHeight": 8322
+}

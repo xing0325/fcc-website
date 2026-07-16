@@ -1,0 +1,177 @@
+{
+  "footerLinkBefore": "Services",
+  "footerLinkAfter": "Services",
+  "footerAllLinks": [
+    "About",
+    "Services",
+    "Projects",
+    "Clients",
+    "Culture & Careers",
+    "Blog",
+    "Contact",
+    "FAQ",
+    "Facebook",
+    "Instagram",
+    "LinkedIn",
+    "X",
+    "Privacy Policy",
+    "Terms and Conditions"
+  ],
+  "headStill": {
+    "top": 15,
+    "t": "none",
+    "o": "1"
+  },
+  "headScrollingDown": [
+    {
+      "top": 15,
+      "t": "none",
+      "o": "1"
+    },
+    {
+      "top": 15,
+      "t": "none",
+      "o": "1"
+    },
+    {
+      "top": 15,
+      "t": "none",
+      "o": "1"
+    },
+    {
+      "top": 15,
+      "t": "none",
+      "o": "1"
+    },
+    {
+      "top": 15,
+      "t": "none",
+      "o": "1"
+    },
+    {
+      "top": 15,
+      "t": "none",
+      "o": "1"
+    },
+    {
+      "top": 15,
+      "t": "none",
+      "o": "1"
+    },
+    {
+      "top": 15,
+      "t": "none",
+      "o": "1"
+    }
+  ],
+  "headAfterStopDown": {
+    "top": 15,
+    "t": "none",
+    "o": "1"
+  },
+  "headScrollingUp": [
+    {
+      "top": 15,
+      "t": "none",
+      "o": "1"
+    },
+    {
+      "top": 15,
+      "t": "none",
+      "o": "1"
+    },
+    {
+      "top": 15,
+      "t": "none",
+      "o": "1"
+    },
+    {
+      "top": 15,
+      "t": "none",
+      "o": "1"
+    }
+  ],
+  "headAfterStopUp": {
+    "top": 15,
+    "t": "none",
+    "o": "1"
+  },
+  "navColsDeep": [
+    [
+      {
+        "tag": "A",
+        "cls": "link | js-primary-links",
+        "d": "block",
+        "o": "1",
+        "v": "visible",
+        "t": "none",
+        "h": 0
+      },
+      {
+        "tag": "SPAN",
+        "cls": "",
+        "d": "inline",
+        "o": "1",
+        "v": "visible",
+        "t": "none",
+        "h": 0
+      },
+      {
+        "tag": "LI",
+        "cls": "overflow-hidden",
+        "d": "list-item",
+        "o": "1",
+        "v": "visible",
+        "t": "none",
+        "h": 0
+      },
+      {
+        "tag": "UL",
+        "cls": "absolute",
+        "d": "block",
+        "o": "1",
+        "v": "visible",
+        "t": "none",
+        "h": 0
+      }
+    ],
+    [
+      {
+        "tag": "A",
+        "cls": "link | js-primary-links",
+        "d": "block",
+        "o": "1",
+        "v": "visible",
+        "t": "none",
+        "h": 0
+      },
+      {
+        "tag": "SPAN",
+        "cls": "",
+        "d": "inline",
+        "o": "1",
+        "v": "visible",
+        "t": "none",
+        "h": 0
+      },
+      {
+        "tag": "LI",
+        "cls": "overflow-hidden",
+        "d": "list-item",
+        "o": "1",
+        "v": "visible",
+        "t": "none",
+        "h": 0
+      },
+      {
+        "tag": "UL",
+        "cls": "absolute",
+        "d": "block",
+        "o": "1",
+        "v": "visible",
+        "t": "none",
+        "h": 0
+      }
+    ]
+  ]
+}
