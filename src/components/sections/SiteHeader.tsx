@@ -19,16 +19,17 @@ function NavScramble({ text, play, delay }: { text: string; play: boolean; delay
 }
 
 const primaryLinks: NavLink[] = [
-  { href: "#about", label: "About" },
-  { href: "#services", label: "Services" },
-  { href: "#cases", label: "Cases" },
-  { href: "#mentors", label: "Mentors" },
+  { href: "/about", label: "About" },
+  { href: "/services", label: "Services" },
+  { href: "/projects", label: "Cases" },
+  { href: "/about#mentors", label: "Mentors" },
 ];
 
 const secondaryLinks: NavLink[] = [
-  { href: "#team", label: "Team" },
-  { href: "#faq", label: "FAQ" },
-  { href: "#contact", label: "Contact" },
+  { href: "/clients", label: "Placements" },
+  { href: "/culture-and-careers", label: "Culture" },
+  { href: "/blog", label: "Insights" },
+  { href: "/contact", label: "Contact" },
 ];
 
 export default function SiteHeader() {
@@ -195,7 +196,7 @@ export default function SiteHeader() {
             </div>
           </div>
           <a
-            href="#contact"
+            href="/contact"
             aria-label="Go to contact page"
             className="group relative z-[1] block overflow-hidden transition-colors duration-500 flex-1 bg-blue b-1px b-blue flex-center lg:w-48 lg:h-48 lg:flex-none lg:flex-shrink-0"
           >
@@ -272,7 +273,7 @@ export default function SiteHeader() {
               <div className="flex flex-col items-start lg:w-1/2">
                 <div className="overflow-hidden">
                   <a
-                    href="tel:+12127320555"
+                    href="tel:+864000155158"
                     tabIndex={open ? 0 : -1}
                     aria-label="Call us at 400 015 5158"
                     className="font-pp-neue font-normal fs-16 leading-[1.4] text-blue border-b-1px b-blue pb-4"

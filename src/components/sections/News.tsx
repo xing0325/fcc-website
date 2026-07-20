@@ -12,7 +12,7 @@ const posts = [
     datetime: "2026-01-01",
     category: "Consulting",
     title: "徐天石 — 波士顿咨询公司全球合伙人兼董事，Consulting Partner",
-    href: "#mentors",
+    href: "/about#mentors",
     image: "/images/fcc-1.jpg",
   },
   {
@@ -20,7 +20,7 @@ const posts = [
     datetime: "2026-01-02",
     category: "Internet",
     title: "林晓斌 — 腾讯云前任副总裁，Internet Product Partner",
-    href: "#mentors",
+    href: "/about#mentors",
     image: "/images/fcc-4.jpg",
   },
   {
@@ -28,7 +28,7 @@ const posts = [
     datetime: "2026-01-03",
     category: "Banking",
     title: "K 导师 — 顶尖投行 VP，投行求职全程规划",
-    href: "#mentors",
+    href: "/about#mentors",
     image: "/images/fcc-8.jpg",
   },
   {
@@ -36,7 +36,7 @@ const posts = [
     datetime: "2026-01-04",
     category: "AI Product",
     title: "Q 导师 — 清华系 AI 公司 VP，AI 产品求职实战",
-    href: "#mentors",
+    href: "/about#mentors",
     image: "/images/fcc-6.jpg",
   },
 ];
@@ -53,7 +53,7 @@ export default function News() {
           <span>Our Mentors</span>
         </div>
         <div>
-          <FlipArrowLink label="View All Mentors" href="#mentors" className="my-text" />
+          <FlipArrowLink label="View All Mentors" href="/about#mentors" className="my-text" />
         </div>
       </div>
 

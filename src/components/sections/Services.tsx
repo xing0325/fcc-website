@@ -12,42 +12,42 @@ const SERVICES = [
     title: "背景诊断 Background Assessment",
     description:
       "科学测评学员背景与职业兴趣，定制个性化求职方案，解决方向迷茫问题。",
-    href: "#services",
+    href: "/services",
     image: "/images/fcc-2.jpg",
   },
   {
     title: "顾问匹配 Consultant Matching",
     description:
       "精准匹配行业专家导师，优化申请材料与人脉网络，强化职业竞争力。",
-    href: "#services",
+    href: "/services",
     image: "/images/fcc-3.jpg",
   },
   {
     title: "导师指导 Mentorship Program",
     description:
       "多位资深导师一对一/小班教学，系统搭建知识体系与实战经验，覆盖跨行业转型支持。",
-    href: "#services",
+    href: "/services",
     image: "/images/fcc-6.jpg",
   },
   {
     title: "实战模拟 Simulation Training",
     description:
       "多轮 Mock 面试密集高强度演练，行为/技术/案例逐项拆解，系统性提升面试能力。",
-    href: "#services",
+    href: "/services",
     image: "/images/fcc-8.jpg",
   },
   {
     title: "职场分析 Career Analytics",
     description:
       "提供 Offer 评估策略与职业发展建议，涵盖网络内推、实习/全职岗位规划与路径优化。",
-    href: "#services",
+    href: "/services",
     image: "/images/fcc-5.jpg",
   },
   {
     title: "最终申请 Final Push",
     description:
       "系统化支持全职申请，对接行业领军与校友网络，推进流程并提供谈薪建议。",
-    href: "#services",
+    href: "/services",
     image: "/images/fcc-7.jpg",
   },
 ];

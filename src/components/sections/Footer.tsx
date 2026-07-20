@@ -54,19 +54,19 @@ function FooterScramble({
 type FooterLink = { href: string; label: string };
 
 const pageLinks: FooterLink[] = [
-  { href: "#about", label: "About" },
-  { href: "#services", label: "Services" },
-  { href: "#cases", label: "Cases" },
-  { href: "#mentors", label: "Mentors" },
+  { href: "/about", label: "About" },
+  { href: "/services", label: "Services" },
+  { href: "/projects", label: "Cases" },
+  { href: "/about#mentors", label: "Mentors" },
 ];
 
 const companyLinks: FooterLink[] = [
-  { href: "#team", label: "Team" },
-  { href: "#strategy", label: "Strategy" },
-  { href: "#contact", label: "Contact" },
+  { href: "/clients", label: "Placements" },
+  { href: "/culture-and-careers", label: "Culture" },
+  { href: "/contact", label: "Contact" },
 ];
 
-const faqLinks: FooterLink[] = [{ href: "#faq", label: "FAQ" }];
+const faqLinks: FooterLink[] = [{ href: "/blog", label: "Insights" }];
 
 const socialLinks: FooterLink[] = [
   { href: "https://www.xiaohongshu.com/", label: "小红书" },
@@ -77,7 +77,7 @@ const socialLinks: FooterLink[] = [
 
 const legalLinks: FooterLink[] = [
   { href: "https://beian.miit.gov.cn/", label: "蜀ICP备2025153008号-2" },
-  { href: "#contact", label: "400 015 5158" },
+  { href: "/contact", label: "400 015 5158" },
 ];
 
 const linkHoverClass = "transition-opacity duration-500 hover:opacity-60";

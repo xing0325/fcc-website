@@ -10,21 +10,21 @@ const projects = [
     index: "01",
     category: "Consulting",
     title: "Accenture · 分析师",
-    href: "#cases",
+    href: "/projects",
     image: "/images/fcc-9.jpg",
   },
   {
     index: "02",
     category: "Consulting",
     title: "Bain · 2025 Spring PTA",
-    href: "#cases",
+    href: "/projects",
     image: "/images/fcc-4.jpg",
   },
   {
     index: "03",
     category: "Audit",
     title: "PwC · 暑期实习",
-    href: "#cases",
+    href: "/projects",
     image: "/images/fcc-10.jpg",
   },
 ];
@@ -120,7 +120,7 @@ export default function Projects() {
           <div className="hidden lg:block bg-mercury absolute right-0 w-[105%] h-full -z-1"></div>
           <SlideButton
             label="View All Cases"
-            href="#cases"
+            href="/projects"
             className="w-full lg:w-248 lg:ml-15"
           />
         </div>
