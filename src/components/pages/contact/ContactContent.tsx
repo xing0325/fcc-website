@@ -105,9 +105,7 @@ function Field({
 }
 
 const socialLinks = [
-  { href: "https://www.xiaohongshu.com/", label: "小红书" },
-  { href: "https://weixin.qq.com/", label: "微信公众号" },
-  { href: "https://www.linkedin.com/", label: "LinkedIn" },
+  { href: "https://www.fccccc.org/img/%E5%93%81%E7%89%8C%E6%89%8B%E5%86%8C.pdf", label: "品牌手册" },
 ];
 
 export default function ContactContent() {

@@ -5,8 +5,8 @@ import { gsap } from "@/lib/gsapSetup";
 import { useAnim } from "@/lib/anim";
 
 /**
- * IntroBlue — original home_intro slice. The main paragraph and both
- * highlights are masked lineUp reveals (highlights delayed n × 0.2); the
+ * IntroBlue — original home_intro slice. The main paragraph and the three
+ * stats are masked lineUp reveals (stats delayed n × 0.2); the
  * mercury "stairs" at the bottom scrub in with scaleX 0 → 1 from the
  * right-most stair (stagger 0.1 from "end", power2.inOut) while the
  * section's bottom travels from the viewport bottom up to 30%.
@@ -14,11 +14,26 @@ import { useAnim } from "@/lib/anim";
 
 const STAIR_FRACTIONS = [1 / 3, 2 / 3, 1];
 
-function Highlight({ text, index }: { text: string; index: number }) {
-  const ref = useAnim<HTMLParagraphElement>("lineUp", { delay: index * 0.2 });
+function Stat({
+  value,
+  label,
+  index,
+}: {
+  value: string;
+  label: string;
+  index: number;
+}) {
+  const ref = useAnim<HTMLDivElement>("lineUp", { delay: index * 0.2 });
   return (
-    <li className="font-normal font-gta-mono uppercase leading-[1.2] tracking-[0] fs-14 lg:fs-12 lg:w-280 lg:leading-[1.33]">
-      <p ref={ref}>{text}</p>
+    <li>
+      <div ref={ref}>
+        <p className="font-pp-neue font-normal leading-none tracking-[0] fs-46 lg:fs-72">
+          {value}
+        </p>
+        <p className="mt-10 font-normal font-gta-mono leading-[1.2] tracking-[0] fs-14 lg:fs-12 lg:leading-[1.33]">
+          {label}
+        </p>
+      </div>
     </li>
   );
 }
@@ -84,24 +99,17 @@ export default function IntroBlue() {
 
       <div className="col-span-full tracking-[0] leading-none font-pp-neue font-normal fs-26 w-[99%] lg:col-start-1 lg:col-end-[-3] lg:fs-46 lg:w-full">
         <p ref={mainRef}>
-          FCC 作为 Boutique Career Agency，始终关注亚太、北美与英国的高薪行业
-          和新兴赛道，持续研究职场战略发展态势。我们汇聚来自全球顶尖金融、
-          战略咨询、科技新贵与独角兽企业的一线从业者，组成 FCC
-          导师顾问团队，提供私人型的职业咨询与策略指导——不仅帮助你踏入
-          世界顶级公司，更致力于探索职业发展的多元可能，规划职场的永续发展路径。
+          FCC 是一家精品求职咨询机构，为海内外高校在读与应届学生提供
+          一对一的求职策略与面试辅导——从行业选择、简历网申到面试与
+          Offer 决策，覆盖咨询、互联网、投行与 AI 产品四大赛道。
         </p>
       </div>
 
       <div className="col-start-3 col-end-[-1] mt-68 lg:col-start-7 lg:col-span-5 lg:mt-80">
-        <ul className="flex flex-col space-y-50 lg:grid lg:gap-x-[65.6px] lg:grid-cols-[auto_auto]">
-          <Highlight
-            index={0}
-            text="长期主义&mdash;&mdash;短期起步就站在头部平台，长期搭建能持续增值的职业成长路线，未来转行晋升都不慌。"
-          />
-          <Highlight
-            index={1}
-            text="从金融、咨询的看家本领出发，全力押注驱动人类进步的新赛道&mdash;&mdash;大健康、数字智能、跨境出海、半导体与双碳。"
-          />
+        <ul className="flex flex-col space-y-50 lg:space-y-60">
+          <Stat index={0} value="100+" label="在职一线导师" />
+          <Stat index={1} value="500+" label="学员 Offer（截至 2025）" />
+          <Stat index={2} value="成都 · 新加坡" label="2021 年起步，两地服务" />
         </ul>
       </div>
     </section>

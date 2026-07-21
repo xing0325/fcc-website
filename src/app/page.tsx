@@ -5,6 +5,7 @@ import Process from "@/components/sections/Process";
 import Projects from "@/components/sections/Projects";
 import Testimonials from "@/components/sections/Testimonials";
 import News from "@/components/sections/News";
+import CtaSection from "@/components/sections/CtaSection";
 
 export default function Home() {
   return (
@@ -16,6 +17,7 @@ export default function Home() {
       <Projects />
       <Testimonials />
       <News />
+      <CtaSection />
     </main>
   );
 }

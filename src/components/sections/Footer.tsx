@@ -1,7 +1,6 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
-import { ArrowControlsIcon } from "@/components/icons";
 import ScrambleText from "@/components/ScrambleText";
 
 const LINK_STAGGER_MS = 40;
@@ -69,9 +68,6 @@ const companyLinks: FooterLink[] = [
 const faqLinks: FooterLink[] = [{ href: "/blog", label: "Insights" }];
 
 const socialLinks: FooterLink[] = [
-  { href: "https://www.xiaohongshu.com/", label: "小红书" },
-  { href: "https://weixin.qq.com/", label: "微信公众号" },
-  { href: "https://www.linkedin.com/", label: "LinkedIn" },
   { href: "https://www.fccccc.org/img/%E5%93%81%E7%89%8C%E6%89%8B%E5%86%8C.pdf", label: "品牌手册" },
 ];
 
@@ -257,7 +253,7 @@ export default function Footer() {
           role="menu"
           className="col-span-full flex flex-col items-start lg:col-span-3 lg:border-l lg:border-mercury lg:pl-12 lg:order-1 lg:h-185 lg:flex lg:flex-col lg:justify-end"
         >
-          <MenuItems links={legalLinks} base={12} play={decoded} instant={reduceMotion} />
+          <MenuItems links={legalLinks} base={9} play={decoded} instant={reduceMotion} />
           <li role="none">
             {/* Always readable in the original — never scrambles. */}
             <span className="hidden lg:mt-20 lg:block">
@@ -279,7 +275,7 @@ export default function Footer() {
               <FooterScramble
                 text="Stay In Touch"
                 play={decoded}
-                delay={14 * LINK_STAGGER_MS}
+                delay={11 * LINK_STAGGER_MS}
                 instant={reduceMotion}
               />
             </span>
@@ -289,40 +285,22 @@ export default function Footer() {
                 <FooterScramble
                   text="400 015 5158"
                   play={decoded}
-                  delay={15 * LINK_STAGGER_MS}
+                  delay={12 * LINK_STAGGER_MS}
                   instant={reduceMotion}
                 />
               </a>
             </span>
           </div>
-          {/*
-           * Native validation: type="email" + required with no noValidate, so
-           * an invalid submit is blocked by the browser (native bubble shows)
-           * and onSubmit only fires — and preventDefaults — when valid.
-           */}
-          <form
-            method="post"
-            aria-label="Newsletter subscription"
-            className="w-full mt-20 reveal-fade"
-            onSubmit={(e) => e.preventDefault()}
-          >
-            <div className="b-mercury bg-blue text-mercury lg:w-[17.36vw] b-1px pl-20 flex justify-between items-center">
-              <label htmlFor="newsletter-email" className="block w-full h-full flex-1">
-                <input
-                  id="newsletter-email"
-                  type="email"
-                  name="email"
-                  placeholder="Your email..."
-                  required
-                  className="text-mercury placeholder:text-mercury bg-transparent text-[0.875rem] lg:text-[0.75rem] font-pp-neue tracking-[0] leading-none h-full w-full outline-none"
-                />
-                <span className="sr-only">Email address for newsletter subscription</span>
-              </label>
-              <button type="submit" aria-label="Subscribe to newsletter" className="h-55 px-15">
-                <ArrowControlsIcon className="icon w-20 h-9 -mt-[0.3em] text-mercury" aria-hidden="true" />
-              </button>
-            </div>
-          </form>
+          <div className="w-full mt-20">
+            <a href="mailto:hello@fccccc.org" className={linkHoverClass}>
+              <FooterScramble
+                text="hello@fccccc.org"
+                play={decoded}
+                delay={13 * LINK_STAGGER_MS}
+                instant={reduceMotion}
+              />
+            </a>
+          </div>
         </div>
       </nav>
       <div className="col-span-full font-pp-neue fs-16 leading-[1.5] text-mercury mt-20 lg:hidden">

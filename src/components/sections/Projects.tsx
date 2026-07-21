@@ -1,35 +1,50 @@
 "use client";
 
-import DitheredImage from "@/components/DitheredImage";
 import SlideButton from "@/components/SlideButton";
-import { TopRightArrowIcon } from "@/components/icons";
 import { useAnim } from "@/lib/anim";
 
-const projects = [
+const cases = [
   {
     index: "01",
     category: "Consulting",
     title: "Accenture · 分析师",
+    student: "W 同学|2025 届|商科",
+    chain: {
+      start: "双非本科,零咨询实习",
+      intervention: "8 周 Case 训练 + 2 位行业专家内推",
+      result: "2025.09 拿到 Offer",
+    },
     href: "/projects",
-    image: "/images/fcc-9.jpg",
   },
   {
     index: "02",
     category: "Consulting",
     title: "Bain · 2025 Spring PTA",
+    student: "L 同学|2026 届|经济学|海本",
+    chain: {
+      start: "框架背得熟,Mock 一追问就乱",
+      intervention: "12 轮高强度 Mock + 结构化表达专项",
+      result: "2025.03 拿到 PTA Offer",
+    },
     href: "/projects",
-    image: "/images/fcc-4.jpg",
   },
   {
     index: "03",
-    category: "Audit",
+    category: "Consulting",
     title: "PwC · 暑期实习",
+    student: "C 同学|2026 届|跨专业|工科转商",
+    chain: {
+      start: "工科转商,简历投递长期没有回音",
+      intervention: "4 次行业专家 1v1 + 简历逐条重写",
+      result: "2025.04 拿到暑期实习",
+    },
     href: "/projects",
-    image: "/images/fcc-10.jpg",
   },
 ];
 
-function ProjectTitle({ title, index }: { title: string; index: number }) {
+type CaseItem = (typeof cases)[number];
+
+function CaseTitle({ title, index }: { title: string; index: number }) {
   const ref = useAnim<HTMLHeadingElement>("lineUp", { delay: index * 0.3 });
   return (
     <h3
@@ -41,73 +56,95 @@ function ProjectTitle({ title, index }: { title: string; index: number }) {
   );
 }
 
+function CaseChain({ item, index }: { item: CaseItem; index: number }) {
+  const ref = useAnim<HTMLDivElement>("fadeUp", { delay: index * 0.3 + 0.2 });
+  return (
+    <div ref={ref} className="mt-24">
+      <ul className="text-blue font-normal fs-16 leading-[1.6] tracking-[0]">
+        <li>
+          <span className="font-gta-mono fs-12 uppercase opacity-60">
+            起点
+          </span>
+          <p>{item.chain.start}</p>
+        </li>
+        <li className="mt-14 pt-14 border-t-1px b-blue">
+          <span className="font-gta-mono fs-12 uppercase opacity-60">
+            → 干预
+          </span>
+          <p>{item.chain.intervention}</p>
+        </li>
+        <li className="mt-14 pt-14 border-t-1px b-blue">
+          <span className="font-gta-mono fs-12 uppercase opacity-60">
+            → 结果
+          </span>
+          <p>{item.chain.result}</p>
+        </li>
+      </ul>
+      <div className="mt-24 text-blue font-gta-mono fs-12 leading-none tracking-[0] opacity-60">
+        {item.student}
+      </div>
+    </div>
+  );
+}
+
 export default function Projects() {
+  const labelRef = useAnim<HTMLDivElement>("fadeIn");
   const titleRef = useAnim<HTMLHeadingElement>("title");
   const linesRef = useAnim<HTMLDivElement>("line", {
     target: ".js-project-line",
     stagger: 0.3,
   });
   const buttonRef = useAnim<HTMLDivElement>("fadeUp");
+  const noteRef = useAnim<HTMLParagraphElement>("fadeIn");
 
   return (
     <section className="px-15 pb-15">
       <div className="border-t-1px b-blue pt-50 lg:pt-100"></div>
       <div className="my-grid">
         <div className="my-title text-center col-span-full lg:col-start-3 lg:col-end-[-3]">
+          <div
+            ref={labelRef}
+            className="hidden lg:block text-blue font-gta-mono fs-12 leading-none tracking-[0] uppercase opacity-60 mb-24"
+          >
+            Recent Offers
+          </div>
           <h2 ref={titleRef}>
-            Most Recent
+            最新学员
             <br />
-            Offers
+            Offer
           </h2>
         </div>
       </div>
       <div className="my-grid relative mt-130 gap-y-60 lg:pb-40">
         <div ref={linesRef} className="hidden absolute top-0 left-0 w-full h-full my-grid lg:grid">
-          {projects.map((project) => (
+          {cases.map((item) => (
             <div
-              key={project.index}
+              key={item.index}
               className="js-project-line absolute top-0 left-0 b-blue pointer-events-none w-[1px] border-l-1px h-full translate-x-[0.5px] col-span-4 static!"
             ></div>
           ))}
         </div>
-        {projects.map((project, i) => (
+        {cases.map((item, i) => (
           <div
-            key={project.href}
-            className="col-span-full lg:col-span-4 lg:pl-15 lg:pr-65 lg:pb-[20vh]"
+            key={item.index}
+            className="col-span-full lg:col-span-4 lg:pl-15 lg:pr-65 lg:pb-[10vh]"
             data-project-index={i}
           >
             <div className="flex justify-between text-blue font-normal font-gta-mono fs-12 leading-none tracking-[0] uppercase lg:pr-12">
               <div>
-                <span>{project.index}</span>
+                <span>{item.index}</span>
               </div>
-              <div aria-hidden="true">{project.category}</div>
+              <div aria-hidden="true">{item.category}</div>
             </div>
             <div className="mt-44 relative z-1">
               <div className="bg-mercury absolute w-[2vw] h-full top-0 right-full -z-1"></div>
-              <ProjectTitle title={project.title} index={i} />
-              <div className="relative group">
-                <div className="overflow-hidden relative w-full mt-24 aspect-[385/260]">
-                  <DitheredImage src={project.image} />
-                  {/* eslint-disable-next-line @next/next/no-img-element */}
-                  <img
-                    src={project.image}
-                    alt=""
-                    className="absolute inset-0 w-full h-full object-cover opacity-0 transition-opacity duration-500 group-hover:opacity-100"
-                  />
-                  <div
-                    className="bg-white border-[0.5px] b-blue absolute bottom-0 right-0 flex-center scale-0 origin-bottom-right will-change-transform transition-transform duration-500 group-hover:scale-100"
-                    style={{ width: "3.75rem", height: "3.75rem" }}
-                  >
-                    <TopRightArrowIcon
-                      className="icon size-[53%] text-blue scale-0 origin-center transition-transform duration-500 delay-100 group-hover:scale-100"
-                      aria-hidden="true"
-                    />
-                  </div>
-                </div>
+              <CaseTitle title={item.title} index={i} />
+              <div className="relative">
+                <CaseChain item={item} index={i} />
                 <a
-                  href={project.href}
+                  href={item.href}
                   className="absolute inset-0"
-                  aria-label={`查看学员案例: ${project.title}`}
+                  aria-label={`查看学员案例: ${item.title}`}
                 ></a>
               </div>
             </div>
@@ -124,6 +161,12 @@ export default function Projects() {
             className="w-full lg:w-248 lg:ml-15"
           />
         </div>
+        <p
+          ref={noteRef}
+          className="col-span-full text-blue font-gta-mono fs-12 leading-none tracking-[0] opacity-60 text-center mt-40"
+        >
+          案例与评价均经学员授权,信息已脱敏。
+        </p>
       </div>
     </section>
   );

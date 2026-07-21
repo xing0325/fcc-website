@@ -7,24 +7,24 @@ import { ArrowControlsIcon } from "@/components/icons";
 const SLIDES = [
   {
     quote:
-      "“从背景诊断到最终谈薪，FCC 的导师在每一个节点都给了我可执行的建议。方向清晰之后，拿到埃森哲的分析师 Offer 只是水到渠成。”",
-    name: "Devon",
+      "“最初我连 Case 框架都搭不起来，Mock 常在开头就卡住。八周训练把拆题的步骤一步步固定下来，终面时我第一次完整、稳定地讲完了整个分析。”",
+    name: "W 同学|2025 届|商科",
     company: "Accenture · 分析师",
     logo: "",
     logoText: "Accenture",
   },
   {
     quote:
-      "“Case 面试最难的不是框架，而是节奏。多轮高强度的 Mock 让我在真正的 Bain 面试里几乎没有遇到意料之外的问题。”",
-    name: "Lucas",
+      "“我的问题是节奏：框架背得熟，一被追问就乱。十二轮 Mock 之后，我习惯了先停两秒再作答，真实的 Bain 面试里没有再被追问带偏过。”",
+    name: "L 同学|2026 届|经济学|海本",
     company: "Bain · 2025 Spring PTA",
     logo: "",
     logoText: "BAIN & COMPANY",
   },
   {
     quote:
-      "“作为转专业的同学，我最需要的是行业信息差的填补。FCC 的行业专家把 PwC 的用人逻辑讲透了，暑期实习面试一次通过。”",
-    name: "Kevin",
+      "“转专业的我不了解审计的用人逻辑，简历投出去长期没有回音。导师逐条改掉简历里的学生腔表述，重投之后一周内就收到了面试邀请。”",
+    name: "C 同学|2026 届|跨专业|工科转商",
     company: "PwC · 暑期实习",
     logo: "",
     logoText: "PwC",
@@ -134,7 +134,7 @@ export default function Testimonials() {
           <div aria-hidden="true">[FCC.3]</div>
         </div>
       </div>
-      <h2 className="sr-only">Testimonials</h2>
+      <h2 className="sr-only">学员评价</h2>
       <div className="col-span-full mt-50 my-grid lg:mt-0">
         <div
           ref={quoteRef}
@@ -190,7 +190,7 @@ export default function Testimonials() {
               {SLIDES.map((slide, i) => (
                 <span
                   key={i}
-                  className={`grid-stack whitespace-nowrap font-pp-neue font-medium fs-24 leading-none text-blue transition-opacity duration-500 ${
+                  className={`grid-stack whitespace-nowrap font-pp-neue font-medium lg:font-bold fs-24 lg:fs-32 leading-none text-blue transition-opacity duration-500 ${
                     i === active ? "opacity-100" : "opacity-0"
                   }`}
                 >

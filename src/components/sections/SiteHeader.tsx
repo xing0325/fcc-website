@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { ArrowControlsIcon, LogoIcon, PenIcon } from "@/components/icons";
+import { LogoIcon } from "@/components/icons";
 import ScrambleText from "@/components/ScrambleText";
 import { onLoaderComplete } from "@/lib/loaderBus";
 
@@ -197,11 +197,15 @@ export default function SiteHeader() {
           </div>
           <a
             href="/contact"
-            aria-label="Go to contact page"
-            className="group relative z-[1] block overflow-hidden transition-colors duration-500 flex-1 bg-blue b-1px b-blue flex-center lg:w-48 lg:h-48 lg:flex-none lg:flex-shrink-0"
+            aria-label="预约咨询"
+            className="group relative z-[1] overflow-hidden flex-1 b-1px border-transparent text-blue font-normal bg-white flex-center uppercase font-gta-mono fs-10 lg:w-80 lg:h-48 lg:flex-none lg:flex-shrink-0"
           >
-            <span className="absolute inset-0 -z-[1] bg-[#8c0a12] opacity-0 transition-opacity duration-500 group-hover:opacity-100" />
-            <PenIcon aria-hidden="true" className="icon h-25 w-17 transition-colors duration-500 text-white group-hover:text-mercury" />
+            <span
+              aria-hidden="true"
+              className="absolute inset-0 bg-mercury -z-[1] opacity-0 transition-opacity duration-500 group-hover:opacity-100"
+            />
+            <span className="lg:hidden">咨询</span>
+            <span className="hidden lg:inline">预约咨询</span>
           </a>
         </div>
 
@@ -302,28 +306,6 @@ export default function SiteHeader() {
                 </div>
               </div>
             </section>
-            <hr className="b-blue hidden lg:block lg:mt-54" />
-            <div className="overflow-hidden mt-72 lg:mt-20">
-              <form method="post" aria-label="Newsletter subscription" onSubmit={(e) => e.preventDefault()}>
-                <div className="b-blue text-blue b-1px pl-20 flex justify-between items-center">
-                  <label htmlFor="newsletter-email" className="block w-full h-full flex-1">
-                    <input
-                      id="newsletter-email"
-                      type="email"
-                      placeholder="Email address"
-                      required
-                      aria-describedby="newsletter-error newsletter-success"
-                      tabIndex={open ? 0 : -1}
-                      className="text-blue placeholder:text-blue text-[1.125rem] lg:text-[0.875rem] font-pp-neue tracking-[0] leading-none h-full w-full outline-none"
-                    />
-                    <span className="sr-only">Email address for newsletter subscription</span>
-                  </label>
-                  <button type="submit" aria-label="Subscribe to newsletter" className="h-55 px-15" tabIndex={open ? 0 : -1}>
-                    <ArrowControlsIcon aria-hidden="true" className="icon w-20 h-9 -mt-[0.3em] text-blue" />
-                  </button>
-                </div>
-              </form>
-            </div>
           </div>
         </div>
       </nav>

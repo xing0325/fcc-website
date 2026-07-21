@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useRef } from "react";
-import { gsap, ScrollTrigger } from "@/lib/gsapSetup";
+import { gsap } from "@/lib/gsapSetup";
 import { useAnim } from "@/lib/anim";
 
 /**
@@ -23,24 +23,28 @@ import { useAnim } from "@/lib/anim";
 
 const CARDS = [
   {
-    title: "Backend Support",
+    title: "后台支持",
+    en: "Backend Support",
     number: "01",
-    text: "后台客服：1 对 4 专属顾问群，1 对 1 制定个人职业规划。",
+    text: "从签约第一天起管理你的申请材料与时间表，保证每个节点不掉队。",
   },
   {
-    title: "Core Consultant",
+    title: "核心顾问",
+    en: "Core Consultant",
     number: "02",
-    text: "核心顾问：全程梳理求职方向，答疑解惑，把控每一个节点。",
+    text: "全程统筹求职策略，定方向、拆阶段，每一步都给你明确的下一个动作。",
   },
   {
-    title: "Industry Expert",
+    title: "行业专家",
+    en: "Industry Expert",
     number: "03",
-    text: "行业专家：头部一线从业者亲自下场，解决行业信息差。",
+    text: "在你锁定赛道后进场，提供目标行业的一手信息与内推机会。",
   },
   {
-    title: "Career Mentor",
+    title: "职业导师",
+    en: "Career Mentor",
     number: "04",
-    text: "教研导师：锁定心仪岗位，简历、笔试、面试逐项击破。",
+    text: "进入面试阶段后负责多轮面试训练，并给出 Offer 之后的长期规划。",
   },
 ] as const;
 
@@ -141,7 +145,10 @@ export default function Process() {
               key={card.number}
               className="js-card col-span-full bg-white text-blue pt-10 pb-20 px-16 lg:col-span-4 lg:pb-22 lg:px-22"
             >
-              <div className="flex justify-between items-center font-pp-neue font-normal text-blue leading-none tracking-[0] fs-24 lg:fs-30">
+              <div className="font-gta-mono font-normal uppercase fs-12 opacity-60 leading-none tracking-[0] hidden lg:block">
+                {card.en}
+              </div>
+              <div className="flex justify-between items-center font-pp-neue font-normal text-blue leading-none tracking-[0] fs-24 lg:fs-30 lg:mt-8">
                 <h3>{card.title}</h3>
                 <div className="mr-8">{card.number}</div>
               </div>

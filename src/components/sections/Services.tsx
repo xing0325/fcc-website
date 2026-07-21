@@ -9,46 +9,46 @@ import { useAnim } from "@/lib/anim";
 
 const SERVICES = [
   {
-    title: "背景诊断 Background Assessment",
-    description:
-      "科学测评学员背景与职业兴趣，定制个性化求职方案，解决方向迷茫问题。",
+    title: "背景诊断",
+    en: "Background Assessment",
+    description: "测评你的背景与目标赛道，产出一份可执行的求职定位方案。",
     href: "/services",
-    image: "/images/fcc-2.jpg",
+    image: "/images/fcc-10.jpg",
   },
   {
-    title: "顾问匹配 Consultant Matching",
-    description:
-      "精准匹配行业专家导师，优化申请材料与人脉网络，强化职业竞争力。",
+    title: "顾问匹配",
+    en: "Consultant Matching",
+    description: "按目标行业匹配核心顾问与行业专家，确定你的专属服务团队。",
     href: "/services",
     image: "/images/fcc-3.jpg",
   },
   {
-    title: "导师指导 Mentorship Program",
-    description:
-      "多位资深导师一对一/小班教学，系统搭建知识体系与实战经验，覆盖跨行业转型支持。",
-    href: "/services",
-    image: "/images/fcc-6.jpg",
-  },
-  {
-    title: "实战模拟 Simulation Training",
-    description:
-      "多轮 Mock 面试密集高强度演练，行为/技术/案例逐项拆解，系统性提升面试能力。",
+    title: "导师指导",
+    en: "Mentorship Program",
+    description: "导师一对一带教，补齐目标岗位所需的知识与技能清单。",
     href: "/services",
     image: "/images/fcc-8.jpg",
   },
   {
-    title: "职场分析 Career Analytics",
-    description:
-      "提供 Offer 评估策略与职业发展建议，涵盖网络内推、实习/全职岗位规划与路径优化。",
-    href: "/services",
-    image: "/images/fcc-5.jpg",
-  },
-  {
-    title: "最终申请 Final Push",
-    description:
-      "系统化支持全职申请，对接行业领军与校友网络，推进流程并提供谈薪建议。",
+    title: "实战模拟",
+    en: "Simulation Training",
+    description: "多轮 Mock 面试逐项拆解，每轮给出反馈与改进清单。",
     href: "/services",
     image: "/images/fcc-7.jpg",
+  },
+  {
+    title: "职场分析",
+    en: "Career Analytics",
+    description: "梳理岗位节奏与内推渠道，产出实习与全职的投递计划。",
+    href: "/services",
+    image: "/images/fcc-9.jpg",
+  },
+  {
+    title: "最终申请",
+    en: "Final Push",
+    description: "跟进网申、面试到谈薪的每个节点，直到 Offer 落定。",
+    href: "/services",
+    image: "/images/fcc-1.jpg",
   },
 ];
 
@@ -86,7 +86,7 @@ export default function Services() {
       <div className="hidden lg:block lg:col-start-1 lg:col-span-6 lg:row-start-2 lg:relative">
         {SERVICES.map((service, i) => (
           <div
-            key={service.href}
+            key={service.en}
             className={`absolute inset-0 flex-center transition-opacity duration-500 ${
               imageIndex === i ? "opacity-100" : "opacity-0"
             }`}
@@ -102,7 +102,7 @@ export default function Services() {
           {SERVICES.map((service, i) => {
             const open = openIndex === i;
             return (
-              <div key={service.href} className="border-b-1px b-blue">
+              <div key={service.en} className="border-b-1px b-blue">
                 <h3>
                   <button
                     id={`accordion-button-${i}`}
@@ -111,7 +111,12 @@ export default function Services() {
                     onClick={() => toggle(i)}
                     className="text-blue font-normal font-pp-neue fs-30 flex w-full justify-between text-left items-start py-17 pr-3 lg:pr-15 leading-none cursor-pointer"
                   >
-                    <span>{service.title}</span>
+                    <span className="flex flex-col items-start">
+                      <span className="font-gta-mono fs-12 uppercase opacity-60 hidden lg:block mb-6">
+                        {service.en}
+                      </span>
+                      <span>{service.title}</span>
+                    </span>
                     <PlusIcon
                       className={`icon w-18 h-18 mt-6 inline-block origin-center shrink-0 transition-transform duration-500 ${
                         open ? "rotate-45" : ""
