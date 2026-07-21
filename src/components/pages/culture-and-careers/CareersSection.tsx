@@ -10,26 +10,35 @@ import { TopRightArrowIcon } from "@/components/icons";
  * bordered Apply pill on mobile) and the View All CTA.
  */
 
-type Job = { title: string; location: string; href: string };
+type Job = {
+  titleZh: string;
+  titleEn: string;
+  location: string;
+  href: string;
+};
 
 const JOBS: Job[] = [
   {
-    title: "兼职行业导师 Industry Mentor — Consulting / Banking",
+    titleZh: "兼职行业导师",
+    titleEn: "Industry Mentor — Consulting / Banking",
     location: "Part-Time, Remote",
     href: "mailto:hello@fccccc.org?subject=应聘:兼职行业导师(Consulting/Banking)",
   },
   {
-    title: "兼职行业导师 Industry Mentor — Internet / AI",
+    titleZh: "兼职行业导师",
+    titleEn: "Industry Mentor — Internet / AI",
     location: "Part-Time, Remote",
     href: "mailto:hello@fccccc.org?subject=应聘:兼职行业导师(Internet/AI)",
   },
   {
-    title: "全职求职顾问 Career Consultant",
+    titleZh: "全职求职顾问",
+    titleEn: "Career Consultant",
     location: "Full-Time, 成都 / 新加坡",
     href: "mailto:hello@fccccc.org?subject=应聘:全职求职顾问",
   },
   {
-    title: "内容运营 / 品牌 Content & Brand",
+    titleZh: "内容运营 / 品牌",
+    titleEn: "Content & Brand",
     location: "Full-Time, 成都",
     href: "mailto:hello@fccccc.org?subject=应聘:内容运营/品牌",
   },
@@ -43,7 +52,11 @@ function JobRow({ job, isFirst, isLast }: { job: Job; isFirst: boolean; isLast: 
 
   return (
     <div className="relative col-span-full grid grid-cols-subgrid border-t b-blue last:border-b lg:border-none group">
-      <div className="col-span-full pt-60 pb-10 lg:col-span-6 lg:relative lg:flex lg:justify-between lg:items-center lg:py-80">
+      <div
+        className={`col-span-full grid grid-cols-subgrid items-center py-36 lg:relative lg:min-h-[190px] lg:py-35 ${
+          isFirst ? "lg:col-span-6" : "lg:col-span-full"
+        }`}
+      >
         {/* desktop hairlines */}
         <div
           aria-hidden="true"
@@ -57,14 +70,28 @@ function JobRow({ job, isFirst, isLast }: { job: Job; isFirst: boolean; isLast: 
         )}
         <h3
           ref={titleRef}
-          className="text-blue font-pp-neue font-normal leading-none tracking-[0] fs-22 lg:fs-30"
+          className={`col-span-full min-w-0 text-blue font-pp-neue font-normal tracking-[0] transition-transform duration-500 ease-[cubic-bezier(0.19,1,0.22,1)] lg:group-hover:translate-x-10 lg:group-focus-within:translate-x-10 ${
+            isFirst ? "lg:col-span-4" : "lg:col-span-7"
+          }`}
         >
-          {job.title}
+          <span className="block fs-22 leading-none lg:fs-30">{job.titleZh}</span>
+          <span className="mt-10 block fs-16 leading-[1.15] opacity-60 lg:fs-18">
+            {job.titleEn}
+          </span>
         </h3>
-        <div className={`${MONO} mt-20 flex justify-between lg:mt-0`}>
-          <span>{job.location}</span>
-          <a href={job.href} target="_blank" rel="noreferrer" className="lg:hidden">
-            <span className={`${MONO} block px-34 py-21 b-1px b-blue`}>Apply</span>
+        <div
+          className={`${MONO} col-span-full mt-24 flex items-center justify-between transition-opacity duration-300 lg:col-span-2 lg:mt-0 lg:block lg:group-hover:opacity-60 lg:group-focus-within:opacity-60 ${
+            isFirst ? "lg:col-start-5" : "lg:col-start-8"
+          }`}
+        >
+          <span className="block leading-[1.25]">{job.location}</span>
+          <a
+            href={job.href}
+            target="_blank"
+            rel="noreferrer"
+            className="flex min-h-44 items-center justify-center px-34 b-1px b-blue lg:hidden"
+          >
+            <span className={MONO}>Apply</span>
           </a>
         </div>
       </div>
@@ -90,8 +117,8 @@ function JobRow({ job, isFirst, isLast }: { job: Job; isFirst: boolean; isLast: 
         href={job.href}
         target="_blank"
         rel="noreferrer"
-        aria-label={`应聘 ${job.title}`}
-        className="hidden lg:block lg:absolute lg:inset-0"
+        aria-label={`应聘 ${job.titleZh}，${job.titleEn}`}
+        className="hidden lg:block lg:absolute lg:inset-0 lg:z-10 focus:outline-none"
       />
     </div>
   );
@@ -115,7 +142,7 @@ export default function CareersSection() {
       </div>
 
       {JOBS.map((job, i) => (
-        <JobRow key={job.title} job={job} isFirst={i === 0} isLast={i === JOBS.length - 1} />
+        <JobRow key={job.href} job={job} isFirst={i === 0} isLast={i === JOBS.length - 1} />
       ))}
 
       <div className="col-span-full mt-80 justify-self-center">

@@ -5,45 +5,53 @@ import DitheredImage from "@/components/DitheredImage";
 
 /**
  * Perks slice — giant centered "Perks" wordmark over a bordered ledger:
- * dithered photo bottom-left, three mono-labelled benefit rows right.
+ * dithered photo bottom-left, four compact bilingual benefit rows right.
  */
 
-type Perk = { label: string; copy: string };
+type Perk = {
+  labelZh: string;
+  labelEn: string;
+  copy: string;
+};
 
 const PERKS: Perk[] = [
   {
-    label: "Remote Collaboration 远程协作",
-    copy:
-      "成都、新加坡双办公室加全远程协作体系,大部分角色不受城市限制。异步文档 + 定期线上例会,让你在最有状态的时间做最有价值的事。",
+    labelZh: "远程协作",
+    labelEn: "Remote collaboration",
+    copy: "成都、新加坡与远程岗位协同，让你按最合适的节奏完成高价值工作。",
   },
   {
-    label: "Mentor Network 行业一线导师网络",
-    copy:
-      "与 BCG 全球合伙人、腾讯云前副总裁、顶尖投行 VP 等行业一线导师并肩工作,Consulting、Banking、Internet、AI 四大赛道的一手行业情报触手可及。",
+    labelZh: "一线导师网络",
+    labelEn: "Mentor network",
+    copy: "与来自咨询、金融、互联网和 AI 的一线导师协作，直接接触真实行业经验。",
   },
   {
-    label: "Flexible Part-time 灵活兼职",
-    copy:
-      "行业导师按项目制灵活排期,每周数小时即可参与,不影响本职工作。用你的行业经验换取有竞争力的课时回报。",
+    labelZh: "灵活兼职",
+    labelEn: "Flexible part-time",
+    copy: "导师可按项目灵活排期，用每周数小时分享经验并获得有竞争力的回报。",
   },
   {
-    label: "Real Impact 见证学员成长",
-    copy:
-      "从背景诊断到最终 Offer,你会完整见证一位学员从迷茫到拿下 Accenture、Bain、PwC 的全过程——这份成就感,是别处给不了的。",
+    labelZh: "见证学员成长",
+    labelEn: "Real impact",
+    copy: "从背景诊断到最终 Offer，全程见证学员把职业目标变成结果。",
   },
 ];
 
 function PerkRow({ perk }: { perk: Perk }) {
   const copyRef = useAnim<HTMLDivElement>("lineUp");
   return (
-    <div className="col-span-full lg:border-b b-blue lg:last:border-b-0 lg:pt-20 lg:pb-80 lg:flex">
-      <h3 className="text-blue font-gta-mono font-normal uppercase leading-none tracking-[0] fs-12 lg:w-[24.72vw]">
-        {perk.label}
+    <div className="col-span-full border-t b-blue px-0 py-40 lg:first:border-t-0 lg:grid lg:grid-cols-subgrid lg:h-125 lg:py-20">
+      <h3 className="text-blue font-normal tracking-[0] lg:col-span-3">
+        <span className="block font-pp-neue fs-22 leading-none lg:fs-20">
+          {perk.labelZh}
+        </span>
+        <span className="block mt-12 font-gta-mono fs-12 leading-none uppercase">
+          {perk.labelEn}
+        </span>
       </h3>
       <div
         ref={copyRef}
-        className="font-pp-neue font-normal text-blue fs-16 leading-[1.2] tracking-[0] mt-24 lg:fs-14 lg:mt-0 lg:w-[23.61vw]"
-        role="text"
+        className="mt-24 font-pp-neue font-normal text-blue fs-16 leading-[1.3] tracking-[0] lg:col-start-4 lg:col-span-3 lg:mt-0 lg:fs-14 lg:leading-[1.3]"
       >
         <p>{perk.copy}</p>
       </div>
@@ -58,13 +66,13 @@ export default function PerksSection() {
     <section className="px-15 my-grid mt-100 lg:mt-150">
       <h2
         ref={titleRef}
-        className="text-heading fs-100 col-span-full justify-self-center lg:text-[18.75rem]"
+        className="text-heading fs-100 leading-none col-span-full justify-self-center lg:text-[18.75rem]"
       >
         Perks
       </h2>
 
-      <div className="col-span-full grid grid-cols-subgrid mt-50 lg:border-t lg:border-b b-blue">
-        <div className="col-span-full lg:col-span-5 lg:border-r b-blue lg:flex lg:items-end lg:pb-20">
+      <div className="col-span-full grid grid-cols-subgrid mt-50 border-t border-b b-blue">
+        <div className="col-span-full pb-24 lg:col-span-5 lg:border-r b-blue lg:flex lg:items-end lg:pb-20">
           <div className="relative overflow-hidden w-full aspect-[5/4] lg:w-[23.61vw]">
             <DitheredImage
               src="/images/fcc-6.jpg"
@@ -73,9 +81,9 @@ export default function PerksSection() {
           </div>
         </div>
 
-        <div className="col-span-full mt-50 space-y-74 lg:mt-0 lg:col-start-6 lg:col-end-[-1] lg:space-y-0">
+        <div className="col-span-full grid grid-cols-subgrid lg:col-start-6 lg:col-end-[-1]">
           {PERKS.map((perk) => (
-            <PerkRow key={perk.label} perk={perk} />
+            <PerkRow key={perk.labelEn} perk={perk} />
           ))}
         </div>
       </div>
