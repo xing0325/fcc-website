@@ -4,6 +4,7 @@ import { useEffect, useRef } from "react";
 import DitheredImage, { type DitheredImageRef } from "@/components/DitheredImage";
 import { gsap } from "@/lib/gsapSetup";
 import { useAnim } from "@/lib/anim";
+import { isLoaderComplete } from "@/lib/loaderBus";
 
 /**
  * Hero — full-viewport dithered photo, oversized two-line title,
@@ -78,8 +79,15 @@ export default function Hero() {
   });
   const taglineRef = useAnim<HTMLDivElement>("lineUp", { duration: 1, delay: 0.8 });
 
-  // Un-zoom the shader (1.2 → 1) in sync with the loader's Flip exit.
+  // Un-zoom the shader (1.2 → 1) in sync with the loader's Flip exit. When
+  // the loader was skipped (already played this session / reduced motion)
+  // no flip event will come — settle at 1 immediately.
   useEffect(() => {
+    if (isLoaderComplete()) {
+      const zoom = imageRef.current?.zoom;
+      if (zoom) zoom.value = 1;
+      return;
+    }
     const onFlip = () => {
       const zoom = imageRef.current?.zoom;
       if (zoom) {

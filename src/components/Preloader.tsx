@@ -37,6 +37,19 @@ function CrossLines({
   );
 }
 
+/** The full intro plays once per browser session; later page loads skip it so
+ * navigation chrome is usable immediately (the original is a SPA and never
+ * replays its loader between pages). */
+const PLAYED_KEY = "fcc:loader-played";
+
+function hasPlayedThisSession() {
+  try {
+    return sessionStorage.getItem(PLAYED_KEY) === "1";
+  } catch {
+    return false;
+  }
+}
+
 export default function Preloader() {
   const [gone, setGone] = useState(false);
   const rootRef = useRef<HTMLDivElement>(null);
@@ -48,12 +61,20 @@ export default function Preloader() {
     window.__lenis?.stop();
 
     const finish = () => {
+      try {
+        sessionStorage.setItem(PLAYED_KEY, "1");
+      } catch {
+        /* storage unavailable — replay next load */
+      }
       window.__lenis?.start();
       emitLoaderComplete();
       setGone(true);
     };
 
-    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+    if (
+      hasPlayedThisSession() ||
+      window.matchMedia("(prefers-reduced-motion: reduce)").matches
+    ) {
       finish();
       return;
     }
