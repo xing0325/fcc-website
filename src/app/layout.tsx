@@ -3,6 +3,8 @@ import localFont from "next/font/local";
 import "./globals.css";
 import LenisProvider from "@/components/LenisProvider";
 import Preloader from "@/components/Preloader";
+import SiteHeader from "@/components/sections/SiteHeader";
+import Footer from "@/components/sections/Footer";
 
 const ppNeue = localFont({
   src: [
@@ -37,7 +39,11 @@ export default function RootLayout({
     <html lang="en" translate="no" className={`${ppNeue.variable} ${gtaMono.variable}`}>
       <body className="bg-mercury font-pp-neue antialiased">
         <Preloader />
-        <LenisProvider>{children}</LenisProvider>
+        <LenisProvider>
+          <SiteHeader />
+          {children}
+          <Footer />
+        </LenisProvider>
       </body>
     </html>
   );
