@@ -3,7 +3,7 @@
 import { useEffect, useRef, type CSSProperties } from "react";
 import { gsap } from "@/lib/gsapSetup";
 import { useAnim } from "@/lib/anim";
-import DitheredImage from "@/components/DitheredImage";
+import ArchiveImage from "@/components/ArchiveImage";
 
 /**
  * About page hero — "About FCC / Boutique Career Agency".
@@ -68,11 +68,14 @@ export default function AboutHero() {
       </div>
 
       <div className="relative mt-30 grid-stack-wrap lg:mt-15">
-        {/* full-bleed dithered photo */}
+        {/* full-bleed archive photo */}
         <div className="grid-stack relative overflow-hidden aspect-[3/2]">
-          <DitheredImage
+          <ArchiveImage
             src="/images/fcc-2.jpg"
             alt="FCC 团队与学员在一起"
+            variant="archive"
+            hover={false}
+            eager
           />
         </div>
 

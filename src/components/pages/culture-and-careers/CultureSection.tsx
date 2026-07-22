@@ -1,7 +1,7 @@
 "use client";
 
 import { useAnim } from "@/lib/anim";
-import DitheredImage from "@/components/DitheredImage";
+import ArchiveImage from "@/components/ArchiveImage";
 
 /**
  * Culture slice — a giant "Culture" wordmark parked behind a staggered
@@ -42,33 +42,43 @@ export default function CultureSection() {
       <div className="grid grid-cols-subgrid col-span-full items-start lg:mt-260">
         {/* photo collage */}
         <div className="relative overflow-hidden col-span-full row-start-1 aspect-[4/3] lg:col-start-1 lg:col-end-6">
-          <DitheredImage
+          <ArchiveImage
             src="/images/fcc-2.jpg"
             alt="FCC 团队成员合影"
+            variant="plain"
+            objectPosition="50% 40%"
           />
         </div>
         <div className="relative overflow-hidden col-start-3 col-end-[-1] mt-20 row-start-2 aspect-[600/608] lg:mt-0 lg:row-start-1 lg:col-start-5 lg:col-end-8 lg:aspect-[320/220] lg:self-end lg:translate-y-[40%]">
-          <DitheredImage
+          <ArchiveImage
             src="/images/fcc-1.jpg"
             alt="FCC 办公室前台"
+            variant="plain"
+            objectPosition="50% 30%"
           />
         </div>
         <div className="relative overflow-hidden col-start-1 col-end-[-2] mt-72 aspect-[315/340] row-start-4 lg:col-start-[-4] lg:col-end-[-1] lg:row-start-1 lg:mt-0 lg:translate-y-[90%]">
-          <DitheredImage
+          <ArchiveImage
             src="/images/fcc-3.jpg"
             alt="导师与学员的一对一辅导现场"
+            variant="plain"
+            objectPosition="50% 50%"
           />
         </div>
         <div className="relative overflow-hidden col-start-3 col-end-[-1] mt-60 row-start-5 aspect-[3/2] lg:row-start-2 lg:col-start-[-6] lg:col-span-3 lg:mt-0 lg:translate-y-full lg:self-end">
-          <DitheredImage
+          <ArchiveImage
             src="/images/fcc-4.jpg"
             alt="FCC 团队活动合影"
+            variant="plain"
+            objectPosition="50% 60%"
           />
         </div>
         <div className="relative overflow-hidden col-span-full mt-60 aspect-[380/460] row-start-6 lg:row-start-3 lg:col-start-2 lg:col-span-5 lg:mt-0 lg:aspect-[578/700]">
-          <DitheredImage
+          <ArchiveImage
             src="/images/fcc-5.jpg"
             alt="FCC 顾问团队成员"
+            variant="plain"
+            objectPosition="50% 25%"
           />
         </div>
 

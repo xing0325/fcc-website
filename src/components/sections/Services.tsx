@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import DitheredImage from "@/components/DitheredImage";
+import ArchiveImage from "@/components/ArchiveImage";
 import FlipArrowLink from "@/components/FlipArrowLink";
 import SlideButton from "@/components/SlideButton";
 import { PlusIcon } from "@/components/icons";
@@ -92,7 +92,15 @@ export default function Services() {
             }`}
           >
             <div className="relative overflow-hidden w-[49%] aspect-[340/240]">
-              <DitheredImage src={service.image} alt={service.title} />
+              {/* real photo under a thin red film; the film slides off when this
+                  service is the open/active one */}
+              <ArchiveImage
+                src={service.image}
+                alt={service.title}
+                variant="film"
+                reveal={false}
+                active={imageIndex === i}
+              />
             </div>
           </div>
         ))}

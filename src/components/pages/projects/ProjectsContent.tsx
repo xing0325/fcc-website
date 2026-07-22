@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
-import DitheredImage, { type DitheredImageRef } from "@/components/DitheredImage";
+import ArchiveImage from "@/components/ArchiveImage";
 import { TopRightArrowIcon } from "@/components/icons";
 import { gsap } from "@/lib/gsapSetup";
 import { useAnim } from "@/lib/anim";
@@ -69,21 +69,6 @@ const pageTitleCss = `
 `;
 
 function ProjectCard({ project }: { project: Project }) {
-  const imageRef = useRef<DitheredImageRef>(null);
-
-  // Hover drives the shader's per-image dither mix straight to the original
-  // texture (1 → 0) instead of fading a plain <img> overlay on top.
-  const toOriginal = () => {
-    const amount = imageRef.current?.ditherAmount;
-    if (!amount) return;
-    gsap.to(amount, { value: 0, duration: 0.5, ease: "power4.out", overwrite: true });
-  };
-  const toDither = () => {
-    const amount = imageRef.current?.ditherAmount;
-    if (!amount) return;
-    gsap.to(amount, { value: 1, duration: 0.5, ease: "power4.out", overwrite: true });
-  };
-
   return (
     <div
       className={`col-span-full relative lg:self-start ${
@@ -94,12 +79,12 @@ function ProjectCard({ project }: { project: Project }) {
         className="relative"
         data-project-parallax={project.parallax ? "" : undefined}
       >
-        <div
-          className="overflow-hidden relative group w-full aspect-[382/257]"
-          onMouseEnter={toOriginal}
-          onMouseLeave={toDither}
-        >
-          <DitheredImage ref={imageRef} src={project.image} alt={project.title} />
+        <div className="overflow-hidden relative group w-full aspect-[382/257]">
+          <ArchiveImage
+            src={project.image}
+            alt={`${project.title} 学员 Offer 案例照片`}
+            variant="archive"
+          />
           <div
             className="bg-white border-[0.5px] b-blue absolute bottom-0 right-0 flex-center scale-0 origin-bottom-right will-change-transform transition-transform duration-500 group-hover:scale-100"
             style={{ width: "3.75rem", height: "3.75rem" }}

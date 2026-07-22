@@ -1,7 +1,7 @@
 "use client";
 
 import { useAnim } from "@/lib/anim";
-import DitheredImage from "@/components/DitheredImage";
+import ArchiveImage from "@/components/ArchiveImage";
 
 /**
  * Milestones slice — six year cards staggered across three rule-lined
@@ -14,6 +14,8 @@ type Milestone = {
   year: string;
   caption: [string, string];
   image: string;
+  /** descriptive Chinese alt for the photo */
+  alt: string;
   aspect: string;
   /** lg grid placement + stagger offset */
   lgClasses: string;
@@ -26,6 +28,7 @@ const MILESTONES: Milestone[] = [
     year: "2021",
     caption: ["FCC 成都创立", "Founded in Chengdu"],
     image: "/images/fcc-3.jpg",
+    alt: "2021 年 FCC 在成都创立时的创始团队合影",
     aspect: "aspect-[3/2]",
     lgClasses: "lg:col-start-1 lg:row-start-1 lg:mt-44",
   },
@@ -33,6 +36,7 @@ const MILESTONES: Milestone[] = [
     year: "2022",
     caption: ["导师网络扩张", "100+ Mentors"],
     image: "/images/fcc-5.jpg",
+    alt: "FCC 导师团队交流研讨、扩张导师网络的场景",
     aspect: "aspect-[1600/1066]",
     lgClasses: "lg:col-start-9 lg:row-start-1 lg:mt-144",
     alignEnd: true,
@@ -41,6 +45,7 @@ const MILESTONES: Milestone[] = [
     year: "2023",
     caption: ["新加坡办公室成立", "Singapore Office"],
     image: "/images/fcc-7.jpg",
+    alt: "FCC 新加坡办公室的工作环境",
     aspect: "aspect-[645/834]",
     lgClasses: "lg:col-start-5 lg:row-start-1 lg:mt-312",
   },
@@ -48,6 +53,7 @@ const MILESTONES: Milestone[] = [
     year: "2024",
     caption: ["学员社群破千", "1,000+ Members"],
     image: "/images/fcc-9.jpg",
+    alt: "FCC 学员社群成员聚会互动的现场",
     aspect: "aspect-[683/480]",
     lgClasses: "lg:col-start-9 lg:row-start-2 lg:mt-0",
     alignEnd: true,
@@ -56,6 +62,7 @@ const MILESTONES: Milestone[] = [
     year: "2025",
     caption: ["500+ Offer 里程碑", "官网 fccccc.org 上线"],
     image: "/images/fcc-10.jpg",
+    alt: "FCC 学员收获 500+ Offer 的庆祝时刻",
     aspect: "aspect-[2880/2202]",
     lgClasses: "lg:col-start-1 lg:row-start-2 lg:mt-160",
   },
@@ -63,6 +70,7 @@ const MILESTONES: Milestone[] = [
     year: "2026",
     caption: ["陪伴新世代", "Own Our Career Future"],
     image: "/images/fcc-2.jpg",
+    alt: "FCC 团队与新世代学员并肩同行的画面",
     aspect: "aspect-[3/2]",
     lgClasses: "lg:col-start-5 lg:row-start-2 lg:mt-340",
     alignEnd: true,
@@ -79,7 +87,7 @@ function MilestoneCard({ milestone, index }: { milestone: Milestone; index: numb
     >
       <div className="w-[60.95vw] lg:w-[20.83vw]">
         <div className={`relative overflow-hidden ${milestone.aspect}`}>
-          <DitheredImage src={milestone.image} alt={`${milestone.year} — ${milestone.caption.join(" ")}`} />
+          <ArchiveImage src={milestone.image} alt={milestone.alt} variant="archive" />
         </div>
         <div className="relative">
           {/* mercury backdrop masking the column rule behind the type */}

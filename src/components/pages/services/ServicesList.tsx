@@ -1,22 +1,20 @@
 "use client";
 
 import { useRef } from "react";
-import DitheredImage from "@/components/DitheredImage";
+import ArchiveImage from "@/components/ArchiveImage";
 import { useAnim } from "@/lib/anim";
 
 /**
  * Services list — original services_list slice:
  * 1. "A Full / Journey of / Coaching" staggered showcase with the tall
- *    dithered brand photo, mono side notes and vertical rules.
+ *    archive-graded brand photo, mono side notes and vertical rules.
  * 2. Numbered service rows. On lg a full-bleed blue bar slides behind the
  *    hovered row (approximating the original's GSAP Flip js-bg), the row's
- *    dithered thumbnail is uncovered, the description flips to mercury and
- *    a "Read More" button fades in.
+ *    ArchiveImage thumbnail restores from its cool grade to full colour,
+ *    the description flips to mercury and a "Read More" button fades in.
  *
- * Stacking note: the shared dither canvas is fixed at z-index -1 and
- * prepended to <body>, so the hover bar sits at -z-2 (below the canvas —
- * the image pixels paint above it) while each row's mercury cover sits at
- * -z-1 (above the canvas — it hides the image until hover).
+ * Stacking note: the hover bar sits at -z-2 so it slides behind the row
+ * content (the ArchiveImage thumbnails paint above it in normal flow).
  */
 
 const SERVICES = [
@@ -27,6 +25,7 @@ const SERVICES = [
       "科学测评学员背景与职业兴趣，定制个性化求职方案。入学两周内完成 1v1 深度访谈与能力测评，输出 20+ 页背景诊断报告与目标行业匹配矩阵，并由核心顾问制定季度行动路线图。",
     href: "/contact",
     image: "/images/fcc-2.jpg",
+    imageAlt: "FCC 顾问为学员进行背景诊断访谈",
   },
   {
     number: "2",
@@ -35,6 +34,7 @@ const SERVICES = [
       "精准匹配行业专家导师，优化申请材料与人脉网络。基于诊断结果在 MBB、腾讯、高盛等背景的导师库中双向匹配，一周内敲定核心顾问加行业专家的双导师配置，简历与 LinkedIn 档案同步打磨。",
     href: "/contact",
     image: "/images/fcc-3.jpg",
+    imageAlt: "FCC 行业导师与学员一对一交流",
   },
   {
     number: "3",
@@ -43,6 +43,7 @@ const SERVICES = [
       "资深导师一对一/小班教学，系统搭建行业知识体系。每周固定 1v1 辅导配合双周小班案例课，覆盖咨询、互联网、投行与 AI 产品四大赛道，跨行业转型学员另配转型专项模块。",
     href: "/contact",
     image: "/images/fcc-6.jpg",
+    imageAlt: "FCC 导师带领学员进行行业知识小班教学",
   },
   {
     number: "4",
@@ -51,6 +52,7 @@ const SERVICES = [
       "多轮 Mock 面试高强度演练，行为/技术/案例逐项拆解。冲刺期每周 2-3 轮全真模拟，由目标公司背景导师执面并出具逐题反馈报告，直至各项评分稳定达到 Offer 水位。",
     href: "/contact",
     image: "/images/fcc-8.jpg",
+    imageAlt: "FCC 模拟面试实战演练现场",
   },
   {
     number: "5",
@@ -59,6 +61,7 @@ const SERVICES = [
       "Offer 评估策略与职业发展建议，覆盖内推与岗位规划。每月更新目标行业招聘情报与岗位清单，结合内推资源规划实习与全职申请节奏，并在多个 Offer 之间提供量化对比与选择建议。",
     href: "/contact",
     image: "/images/fcc-5.jpg",
+    imageAlt: "FCC 顾问分析职业发展与岗位规划",
   },
   {
     number: "6",
@@ -67,6 +70,7 @@ const SERVICES = [
       "系统化支持全职申请，对接行业领军与校友网络。核心顾问全程跟进网申、笔试与终面日程，关键节点由合伙人级导师亲自复盘，拿到 Offer 后提供谈薪策略与入职过渡辅导。",
     href: "/contact",
     image: "/images/fcc-7.jpg",
+    imageAlt: "FCC 导师陪伴学员完成最终申请与谈薪",
   },
 ];
 
@@ -148,12 +152,12 @@ function ServiceRow({
         {service.number}
       </span>
 
-      {/* dithered thumb, uncovered on hover (lg only) */}
+      {/* archive thumb: cool-graded at rest, colour restores on row hover (lg only) */}
       <div className="relative overflow-hidden hidden lg:block lg:col-start-2 lg:col-span-2 lg:row-span-2 lg:aspect-[222/158]">
-        <DitheredImage src={service.image} alt="" />
-        <div
-          aria-hidden="true"
-          className="absolute -inset-4 -z-1 bg-mercury transition-opacity duration-300 lg:group-hover:opacity-0"
+        <ArchiveImage
+          src={service.image}
+          alt={service.imageAlt}
+          variant="archive"
         />
       </div>
 
@@ -258,9 +262,10 @@ export default function ServicesList() {
         </div>
 
         <div className="col-span-full relative overflow-hidden aspect-[380/500] mt-22 lg:hidden">
-          <DitheredImage
+          <ArchiveImage
             src="/images/fcc-9.jpg"
             alt="FCC 导师与学员在办公室进行一对一辅导"
+            variant="archive"
           />
         </div>
 
@@ -276,9 +281,10 @@ export default function ServicesList() {
         <div className="hidden lg:grid grid-cols-subgrid lg:col-span-full lg:border-t lg:border-b b-blue">
           <div className="relative col-start-3 col-end-[-1] grid grid-cols-subgrid border-l-1px b-blue">
             <div className="relative overflow-hidden col-start-2 col-span-6 aspect-[698/738] mt-100 mb-115">
-              <DitheredImage
+              <ArchiveImage
                 src="/images/fcc-9.jpg"
                 alt="FCC 导师与学员在办公室进行一对一辅导"
+                variant="archive"
               />
             </div>
             <StageKeywordList className="col-span-2 self-center -translate-y-50" />

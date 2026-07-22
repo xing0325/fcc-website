@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import DitheredImage from "@/components/DitheredImage";
+import ArchiveImage from "@/components/ArchiveImage";
 import { useAnim } from "@/lib/anim";
 
 /**
@@ -175,7 +175,11 @@ function PostRow({ post }: { post: Post }) {
       {/* thumbnail + mobile read button */}
       <div className="flex justify-between items-end mt-50 lg:col-span-3 lg:justify-self-end lg:self-start lg:mt-0">
         <div className="relative overflow-hidden w-[29.37vw] aspect-square lg:w-[15.42vw] lg:mr-20">
-          <DitheredImage src={post.image} alt={post.title} />
+          <ArchiveImage
+            src={post.image}
+            alt={`FCC ${post.category} 方向求职辅导主题配图`}
+            variant="archive"
+          />
         </div>
         <ReadButton title={post.title} className="inline-block lg:hidden" />
       </div>

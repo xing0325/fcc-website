@@ -1,10 +1,7 @@
 "use client";
 
-import { useEffect, useRef } from "react";
-import DitheredImage, { type DitheredImageRef } from "@/components/DitheredImage";
-import { gsap } from "@/lib/gsapSetup";
+import ArchiveImage from "@/components/ArchiveImage";
 import { useAnim } from "@/lib/anim";
-import { isLoaderComplete } from "@/lib/loaderBus";
 
 /**
  * Hero — full-viewport dithered photo, oversized two-line title,
@@ -62,8 +59,6 @@ const LINES: {
 ];
 
 export default function Hero() {
-  const imageRef = useRef<DitheredImageRef>(null);
-
   const linesRef = useAnim<HTMLDivElement>("line", {
     target: ".js-home-intro-line",
     delay: 0.3,
@@ -79,34 +74,17 @@ export default function Hero() {
   });
   const taglineRef = useAnim<HTMLDivElement>("lineUp", { duration: 1, delay: 0.8 });
 
-  // Un-zoom the shader (1.2 → 1) in sync with the loader's Flip exit. When
-  // the loader was skipped (already played this session / reduced motion)
-  // no flip event will come — settle at 1 immediately.
-  useEffect(() => {
-    if (isLoaderComplete()) {
-      const zoom = imageRef.current?.zoom;
-      if (zoom) zoom.value = 1;
-      return;
-    }
-    const onFlip = () => {
-      const zoom = imageRef.current?.zoom;
-      if (zoom) {
-        gsap.to(zoom, { value: 1, duration: 1.33, ease: "power4.inOut" });
-      }
-    };
-    window.addEventListener("oci:loader-flip", onFlip);
-    return () => window.removeEventListener("oci:loader-flip", onFlip);
-  }, []);
-
   return (
     <section className="px-15 relative h-svh">
       <style>{heroCss}</style>
       <div className="overflow-hidden absolute h-full w-full inset-0">
-        <DitheredImage
-          ref={imageRef}
+        <ArchiveImage
           src="/images/fcc-6.jpg"
-          zoom={1.2}
-          revealOnScroll={false}
+          alt="FCC 求职咨询顾问与学员一对一沟通"
+          variant="archive"
+          hover={false}
+          loaderZoom
+          eager
         />
       </div>
       <h1 className="sr-only">FCC——留学生与应届生的求职策略伙伴</h1>

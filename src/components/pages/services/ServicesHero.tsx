@@ -1,6 +1,6 @@
 "use client";
 
-import DitheredImage from "@/components/DitheredImage";
+import ArchiveImage from "@/components/ArchiveImage";
 import { useAnim } from "@/lib/anim";
 
 /**
@@ -43,9 +43,12 @@ export default function ServicesHero() {
     <section className="svc-hero px-15 my-grid content-end pb-235 relative min-h-svh lg:content-end lg:pb-42">
       <style>{heroCss}</style>
       <div className="overflow-hidden absolute inset-0">
-        <DitheredImage
+        <ArchiveImage
           src="/images/fcc-10.jpg"
           alt=""
+          variant="archive"
+          hover={false}
+          eager
         />
       </div>
       <h1 className="sr-only">Our Services — 六阶段全流程陪伴式辅导</h1>

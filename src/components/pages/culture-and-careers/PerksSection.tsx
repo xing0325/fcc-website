@@ -1,7 +1,7 @@
 "use client";
 
 import { useAnim } from "@/lib/anim";
-import DitheredImage from "@/components/DitheredImage";
+import ArchiveImage from "@/components/ArchiveImage";
 
 /**
  * Perks slice — giant centered "Perks" wordmark over a bordered ledger:
@@ -74,9 +74,11 @@ export default function PerksSection() {
       <div className="col-span-full grid grid-cols-subgrid mt-50 border-t border-b b-blue">
         <div className="col-span-full pb-24 lg:col-span-5 lg:border-r b-blue lg:flex lg:items-end lg:pb-20">
           <div className="relative overflow-hidden w-full aspect-[5/4] lg:w-[23.61vw]">
-            <DitheredImage
+            <ArchiveImage
               src="/images/fcc-6.jpg"
               alt="FCC 团队成员在协作讨论"
+              variant="plain"
+              objectPosition="50% 40%"
             />
           </div>
         </div>
