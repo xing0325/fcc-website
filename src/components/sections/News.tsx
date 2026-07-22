@@ -1,9 +1,10 @@
 "use client";
 
-import { useState } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 import FlipArrowLink from "@/components/FlipArrowLink";
 import { TopRightArrowIcon } from "@/components/icons";
 import { useAnim } from "@/lib/anim";
+import { gsap, Flip, Draggable } from "@/lib/gsapSetup";
 
 const mentors = [
   {
@@ -54,6 +55,185 @@ export default function News() {
   const noteRef = useAnim<HTMLParagraphElement>("fadeUp", { delay: 0.15 });
   const [active, setActive] = useState(0);
 
+  // imperative refs for gsap-driven state (React never styles these)
+  const bgRef = useRef<HTMLDivElement>(null);
+  const arrowRef = useRef<HTMLDivElement>(null);
+  const cardEls = useRef<(HTMLElement | null)[]>([]);
+  const slideEls = useRef<(HTMLDivElement | null)[]>([]);
+  const activeRef = useRef(0);
+  const firstRun = useRef(true);
+
+  // keep the mutable mirror in sync outside of render
+  useEffect(() => {
+    activeRef.current = active;
+  }, [active]);
+
+  // guarded setter so drag updates only fire on real changes
+  const setActiveSafe = (i: number) => {
+    if (activeRef.current !== i) setActive(i);
+  };
+
+  // move the single blue background block to overlap card `i` (relative to the
+  // draggable strip, which is its offset parent). All deps are stable refs.
+  const layoutBg = useCallback((i: number) => {
+    const bg = bgRef.current;
+    const strip = cardsRef.current;
+    const card = cardEls.current[i];
+    if (!bg || !strip || !card) return;
+    const cr = card.getBoundingClientRect();
+    const sr = strip.getBoundingClientRect();
+    bg.style.left = `${cr.left - sr.left}px`;
+    bg.style.top = `${cr.top - sr.top}px`;
+    bg.style.width = `${cr.width}px`;
+    bg.style.height = `${cr.height}px`;
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
+  // ---- mount: initial state + Draggable (mobile) ---------------------------
+  useEffect(() => {
+    const strip = cardsRef.current;
+    const bg = bgRef.current;
+    const arrow = arrowRef.current;
+    if (!strip || !bg || !arrow) return;
+
+    const reduce = window.matchMedia(
+      "(prefers-reduced-motion: reduce)",
+    ).matches;
+    const cs = getComputedStyle(document.documentElement);
+    const BLUE = cs.getPropertyValue("--color-blue").trim() || "#c81018";
+    const MERCURY = cs.getPropertyValue("--color-mercury").trim() || "#e8e6e0";
+
+    // paint the initial featured card without animation
+    const initActive = activeRef.current;
+    layoutBg(initActive);
+    gsap.set(bg, { opacity: 1 });
+    gsap.set(arrow, { scale: 1 });
+    cardEls.current.forEach((c, i) => {
+      if (c) gsap.set(c, { color: i === initActive ? MERCURY : BLUE });
+    });
+    slideEls.current.forEach((s, i) => {
+      if (s) gsap.set(s, { opacity: i === initActive ? 1 : 0, y: 0 });
+    });
+
+    // reposition (no anim) whenever layout could have changed
+    const reposition = () => layoutBg(activeRef.current);
+    window.addEventListener("resize", reposition);
+
+    // Draggable + inertia only below lg; center-most card becomes active
+    const mm = gsap.matchMedia();
+    mm.add("(max-width: 1023px)", () => {
+      const updateFromCenter = () => {
+        const vpCenter = window.innerWidth / 2;
+        let best = 0;
+        let bestDist = Infinity;
+        cardEls.current.forEach((c, i) => {
+          if (!c) return;
+          const r = c.getBoundingClientRect();
+          const d = Math.abs(r.left + r.width / 2 - vpCenter);
+          if (d < bestDist) {
+            bestDist = d;
+            best = i;
+          }
+        });
+        setActiveSafe(best);
+      };
+      const maxScroll = Math.max(0, strip.scrollWidth - strip.offsetWidth);
+      const instance = Draggable.create(strip, {
+        type: "x",
+        inertia: !reduce,
+        edgeResistance: 0.9,
+        dragResistance: 0,
+        bounds: { minX: -maxScroll, maxX: 0 },
+        onDrag: updateFromCenter,
+        onThrottledUpdate: updateFromCenter,
+        onDragEnd: updateFromCenter,
+      })[0];
+      reposition();
+      return () => {
+        instance.kill();
+        gsap.set(strip, { clearProps: "transform,x" });
+        reposition();
+      };
+    });
+
+    return () => {
+      window.removeEventListener("resize", reposition);
+      mm.revert();
+    };
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
+  // ---- animate on active change --------------------------------------------
+  useEffect(() => {
+    if (firstRun.current) {
+      firstRun.current = false;
+      return; // mount effect already painted the initial state
+    }
+    const bg = bgRef.current;
+    const arrow = arrowRef.current;
+    if (!bg) return;
+
+    const reduce = window.matchMedia(
+      "(prefers-reduced-motion: reduce)",
+    ).matches;
+    const cs = getComputedStyle(document.documentElement);
+    const BLUE = cs.getPropertyValue("--color-blue").trim() || "#c81018";
+    const MERCURY = cs.getPropertyValue("--color-mercury").trim() || "#e8e6e0";
+
+    if (reduce) {
+      layoutBg(active);
+      cardEls.current.forEach((c, i) =>
+        c ? gsap.set(c, { color: i === active ? MERCURY : BLUE }) : null,
+      );
+      slideEls.current.forEach((s, i) =>
+        s ? gsap.set(s, { opacity: i === active ? 1 : 0, y: 0 }) : null,
+      );
+      return;
+    }
+
+    // 1. shared blue block glides between cards via Flip (0.5s power4.inOut)
+    const state = Flip.getState(bg);
+    layoutBg(active);
+    Flip.from(state, { duration: 0.5, ease: "power4.inOut" });
+
+    // 2. card text colours cross-tween (0.5s power4.out)
+    cardEls.current.forEach((c, i) => {
+      if (c)
+        gsap.to(c, {
+          color: i === active ? MERCURY : BLUE,
+          duration: 0.5,
+          ease: "power4.out",
+        });
+    });
+
+    // 3. left panel content cross-fade (0.8s power4.inOut, slight y)
+    slideEls.current.forEach((s, i) => {
+      if (!s) return;
+      if (i === active) {
+        gsap.fromTo(
+          s,
+          { opacity: 0, y: 14 },
+          { opacity: 1, y: 0, duration: 0.8, ease: "power4.inOut" },
+        );
+      } else {
+        gsap.to(s, {
+          opacity: 0,
+          y: -14,
+          duration: 0.8,
+          ease: "power4.inOut",
+        });
+      }
+    });
+
+    // 4. corner arrow: quick scale 1 → 0 → 1 reset on every switch (0.4s)
+    if (arrow) {
+      gsap
+        .timeline()
+        .to(arrow, { scale: 0, duration: 0.16, ease: "power4.in" })
+        .to(arrow, { scale: 1, duration: 0.24, ease: "power4.out" });
+    }
+  }, [active, layoutBg]);
+
   return (
     <section className="px-15 my-grid overflow-hidden pt-50 pb-64 lg:pb-100">
       {/* header row */}
@@ -71,7 +251,7 @@ export default function News() {
         </div>
       </div>
 
-      {/* big feature panel — typographic, crossfaded by the hovered card */}
+      {/* big feature panel — typographic, cross-faded by the active card */}
       <div
         ref={panelRef}
         className="col-span-full grid-stack-wrap mt-50 aspect-square bg-blue text-mercury lg:col-start-1 lg:col-span-6"
@@ -79,10 +259,12 @@ export default function News() {
         {mentors.map((mentor, i) => (
           <div
             key={mentor.tag}
+            ref={(el) => {
+              slideEls.current[i] = el;
+            }}
             aria-hidden={active !== i}
-            className={`grid-stack w-full h-full flex flex-col justify-between p-28 transition-opacity duration-700 ${
-              active === i ? "opacity-100" : "opacity-0"
-            }`}
+            style={{ opacity: i === 0 ? 1 : 0 }}
+            className="grid-stack w-full h-full flex flex-col justify-between p-28"
           >
             <div className="flex justify-between font-gta-mono fs-12 leading-none uppercase">
               <span>{mentor.tag}</span>
@@ -107,35 +289,42 @@ export default function News() {
         ))}
       </div>
 
-      {/* 2x2 mentor cards */}
+      {/* 2x2 mentor cards (mobile: draggable inertia strip) */}
       <div
         ref={cardsRef}
-        className="col-span-full mt-15 flex flex-nowrap gap-x-10 lg:col-span-6 lg:grid lg:grid-cols-subgrid lg:mt-50 lg:gap-x-0"
-        onMouseLeave={() => setActive(0)}
+        className="relative col-span-full mt-15 flex flex-nowrap gap-x-10 lg:col-span-6 lg:grid lg:grid-cols-subgrid lg:mt-50 lg:gap-x-0 touch-pan-y"
+        onMouseLeave={() => setActiveSafe(0)}
       >
+        {/* the single shared blue background block, moved between cards via Flip */}
+        <div
+          ref={bgRef}
+          aria-hidden="true"
+          style={{ opacity: 0 }}
+          className="bg-blue absolute z-0 left-0 top-0 will-change-transform pointer-events-none"
+        >
+          <div
+            ref={arrowRef}
+            className="size-85 bg-mercury border-[0.5px] b-blue absolute top-0 right-0 flex-center origin-top-right lg:size-90 will-change-transform"
+            style={{ transform: "scale(1)" }}
+          >
+            <TopRightArrowIcon
+              className="icon size-[40%] text-blue origin-center"
+              aria-hidden="true"
+            />
+          </div>
+        </div>
+
         {mentors.map((mentor, i) => (
           <article
             key={mentor.tag}
-            onMouseEnter={() => setActive(i)}
-            className={`group relative ${
-              active === i ? "text-mercury" : "text-blue"
-            } font-pp-neue font-normal fs-18 tracking-[0] leading-none w-[76.94vw] min-h-280 border-y b-blue shrink-0 pr-55 pl-28 pt-18 pb-28 flex flex-col justify-between lg:col-span-3 lg:w-auto lg:aspect-square ${
+            ref={(el) => {
+              cardEls.current[i] = el;
+            }}
+            onMouseEnter={() => setActiveSafe(i)}
+            className={`group relative z-10 text-blue font-pp-neue font-normal fs-18 tracking-[0] leading-none w-[76.94vw] min-h-280 border-y b-blue shrink-0 pr-55 pl-28 pt-18 pb-28 flex flex-col justify-between lg:col-span-3 lg:w-auto lg:aspect-square ${
               i < 2 ? "lg:border-y-0" : ""
             }`}
           >
-            {/* blue background of the active (featured) card + corner arrow button on hover */}
-            <div
-              className={`bg-blue absolute -z-1 inset-0 transition-opacity duration-500 ${
-                active === i ? "opacity-100" : "opacity-0"
-              }`}
-            >
-              <div className="size-85 bg-mercury border-[0.5px] b-blue absolute top-0 right-0 flex-center origin-top-right lg:size-90 will-change-transform scale-0 transition-transform duration-500 group-hover:scale-100">
-                <TopRightArrowIcon
-                  className="icon size-[40%] text-blue origin-center will-change-transform"
-                  aria-hidden="true"
-                />
-              </div>
-            </div>
             {/* vertical rule between the two card columns (lg) */}
             {(i === 1 || i === 3) && (
               <span
@@ -143,10 +332,8 @@ export default function News() {
                 className="hidden lg:block absolute top-18 bottom-18 left-0 w-1 bg-blue"
               />
             )}
-            <time dateTime={mentor.datetime} className="transition-colors duration-500">
-              {mentor.date}
-            </time>
-            <div className="mt-24 transition-colors duration-500">
+            <time dateTime={mentor.datetime}>{mentor.date}</time>
+            <div className="mt-24">
               <span className="font-gta-mono uppercase fs-10">{mentor.tag}</span>
               <h3 className="mt-22">{mentor.title}</h3>
               <p className="mt-14 fs-14 leading-[1.4]">
@@ -157,7 +344,7 @@ export default function News() {
               href={mentor.href}
               className="absolute inset-0 outline-none"
               aria-label={`认识导师: ${mentor.title}`}
-              onFocus={() => setActive(i)}
+              onFocus={() => setActiveSafe(i)}
             />
           </article>
         ))}

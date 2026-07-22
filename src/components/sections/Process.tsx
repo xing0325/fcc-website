@@ -26,25 +26,25 @@ const CARDS = [
     title: "后台支持",
     en: "Backend Support",
     number: "01",
-    text: "从签约第一天起管理你的申请材料与时间表，保证每个节点不掉队。",
+    text: "签约起统管申请材料与时间表，每个节点不掉队。",
   },
   {
     title: "核心顾问",
     en: "Core Consultant",
     number: "02",
-    text: "全程统筹求职策略，定方向、拆阶段，每一步都给你明确的下一个动作。",
+    text: "全程统筹策略、定方向拆阶段，每步给你明确下一步。",
   },
   {
     title: "行业专家",
     en: "Industry Expert",
     number: "03",
-    text: "在你锁定赛道后进场，提供目标行业的一手信息与内推机会。",
+    text: "锁定赛道后进场，给目标行业的一手信息与内推。",
   },
   {
     title: "职业导师",
     en: "Career Mentor",
     number: "04",
-    text: "进入面试阶段后负责多轮面试训练，并给出 Offer 之后的长期规划。",
+    text: "面试阶段负责多轮模拟，并做 Offer 后的长期规划。",
   },
 ] as const;
 

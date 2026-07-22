@@ -21,12 +21,12 @@ export default function SlideButton({
         fullWidth ? "block w-full" : "inline-block"
       } ${className}`}
     >
-      <span className="block px-46 py-25 bg-blue text-mercury transition-transform duration-[0.6s] ease-[cubic-bezier(0.19,1,0.22,1)] group-hover:-translate-y-full">
+      <span className="block px-46 py-25 bg-blue text-mercury transition-transform duration-[0.5s] ease-[cubic-bezier(0.23,1,0.32,1)] group-hover:-translate-y-full">
         {label}
       </span>
       <span
         aria-hidden
-        className="absolute inset-0 block px-46 py-25 bg-white text-blue origin-bottom translate-y-full scale-x-50 transition-transform duration-[0.6s] ease-[cubic-bezier(0.19,1,0.22,1)] group-hover:translate-y-0 group-hover:scale-x-100"
+        className="absolute inset-0 block px-46 py-25 bg-white text-blue origin-bottom translate-y-full scale-x-50 transition-transform duration-[0.5s] ease-[cubic-bezier(0.23,1,0.32,1)] group-hover:translate-y-0 group-hover:scale-x-100"
       >
         {label}
       </span>

@@ -87,7 +87,7 @@ export default function Services() {
         {SERVICES.map((service, i) => (
           <div
             key={service.en}
-            className={`absolute inset-0 flex-center transition-opacity duration-500 ${
+            className={`absolute inset-0 flex-center transition-opacity duration-500 ease-[cubic-bezier(0.23,1,0.32,1)] ${
               imageIndex === i ? "opacity-100" : "opacity-0"
             }`}
           >
@@ -118,7 +118,7 @@ export default function Services() {
                       <span>{service.title}</span>
                     </span>
                     <PlusIcon
-                      className={`icon w-18 h-18 mt-6 inline-block origin-center shrink-0 transition-transform duration-500 ${
+                      className={`icon w-18 h-18 mt-6 inline-block origin-center shrink-0 transition-transform duration-500 ease-[cubic-bezier(0.86,0,0.07,1)] ${
                         open ? "rotate-45" : ""
                       }`}
                       aria-hidden="true"
@@ -132,7 +132,7 @@ export default function Services() {
                   aria-labelledby={`accordion-button-${i}`}
                   style={{
                     gridTemplateRows: open ? "1fr" : "0fr",
-                    transition: "grid-template-rows 0.5s cubic-bezier(0.4, 0, 0.2, 1)",
+                    transition: "grid-template-rows 0.5s cubic-bezier(0.86, 0, 0.07, 1)",
                   }}
                 >
                   <div className="overflow-hidden min-h-0">

@@ -5,11 +5,28 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { Flip } from "gsap/Flip";
 import { SplitText } from "gsap/SplitText";
 import { ScrambleTextPlugin } from "gsap/ScrambleTextPlugin";
+import { Draggable } from "gsap/Draggable";
+import { InertiaPlugin } from "gsap/InertiaPlugin";
 
-gsap.registerPlugin(ScrollTrigger, Flip, SplitText, ScrambleTextPlugin);
+gsap.registerPlugin(
+  ScrollTrigger,
+  Flip,
+  SplitText,
+  ScrambleTextPlugin,
+  Draggable,
+  InertiaPlugin,
+);
 
 if (typeof window !== "undefined") {
   (window as unknown as Record<string, unknown>).__gsap = gsap;
 }
 
-export { gsap, ScrollTrigger, Flip, SplitText, ScrambleTextPlugin };
+export {
+  gsap,
+  ScrollTrigger,
+  Flip,
+  SplitText,
+  ScrambleTextPlugin,
+  Draggable,
+  InertiaPlugin,
+};

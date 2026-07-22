@@ -349,6 +349,8 @@ export interface MediaHandle {
   showDither(): void;
   /** tweenable uniform refs (e.g. hero zoom 1.2 → 1) */
   readonly zoom: { value: number };
+  /** tweenable dither mix: 1 = fully dithered, 0 = original texture */
+  readonly ditherAmount: { value: number };
   destroy(): void;
 }
 
@@ -628,12 +630,17 @@ class DitherManager {
         }
       },
       showOriginal() {
-        gsap.to(media.uDitherAmount, { value: 0, duration: 0.5 });
+        gsap.to(media.uDitherAmount, {
+          value: 0, duration: 0.5, ease: "power4.out", overwrite: true,
+        });
       },
       showDither() {
-        gsap.to(media.uDitherAmount, { value: 1, duration: 0.5 });
+        gsap.to(media.uDitherAmount, {
+          value: 1, duration: 0.5, ease: "power4.out", overwrite: true,
+        });
       },
       zoom: media.uZoom,
+      ditherAmount: media.uDitherAmount,
       destroy() {
         const i = manager.media.indexOf(media);
         if (i !== -1) manager.media.splice(i, 1);
@@ -709,8 +716,10 @@ class DitherManager {
     gl.uniform1f(loc.uBiasNoiseWeight, GLOBALS.uBiasNoiseWeight);
     gl.uniform1f(loc.uBiasPulseWeight, GLOBALS.uBiasPulseWeight);
     gl.uniform1f(loc.uBiasAnimationStrength, GLOBALS.uBiasAnimationStrength);
-    // the original feeds gsap's ticker time (s) through a ×0.001 — keep it
-    gl.uniform1f(loc.uTime, time * 0.001);
+    // The original's ×0.001 converts a millisecond clock to seconds; gsap's
+    // ticker already reports seconds, so pass it straight through. (With the
+    // extra ×0.001 the breathing pulse period stretched from ~2s to ~34min.)
+    gl.uniform1f(loc.uTime, time);
 
     gl.activeTexture(gl.TEXTURE1);
     gl.bindTexture(gl.TEXTURE_2D, this.rt[this.rtIndex].tex);

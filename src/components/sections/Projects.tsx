@@ -1,6 +1,8 @@
 "use client";
 
+import { useEffect, useRef } from "react";
 import SlideButton from "@/components/SlideButton";
+import { gsap } from "@/lib/gsapSetup";
 import { useAnim } from "@/lib/anim";
 
 const cases = [
@@ -97,6 +99,59 @@ export default function Projects() {
   const buttonRef = useAnim<HTMLDivElement>("fadeUp");
   const noteRef = useAnim<HTMLParagraphElement>("fadeIn");
 
+  // OCI-style whole-column scroll parallax on the three case columns:
+  // each column starts at a different vertical offset (0 / 30 / 15vh) and
+  // drifts ~12vh over the scroll, odd/even columns in opposite directions
+  // (even down, odd up). lg desktop only; skipped for reduced-motion. The
+  // columns carry a large bottom padding (lg:pb-[32vh]) so every column
+  // drifts down into its own reserved space instead of colliding with the
+  // button row or leaving a void beneath the section.
+  const gridRef = useRef<HTMLDivElement>(null);
+  useEffect(() => {
+    const grid = gridRef.current;
+    if (!grid) return;
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+
+    let ctx: gsap.Context | null = null;
+    const build = () => {
+      if (!window.matchMedia("(min-width: 1024px)").matches) return;
+      const cols = gsap.utils.toArray<HTMLElement>(
+        grid.querySelectorAll("[data-project-index]"),
+      );
+      if (!cols.length) return;
+      const FROM = [0, 30, 15];
+      const TO = [12, 18, 27]; // even cols drift down, odd col drifts up
+      ctx = gsap.context(() => {
+        gsap.set(cols, { y: (i: number) => `${FROM[i % FROM.length]}vh` });
+        gsap.to(cols, {
+          y: (i: number) => `${TO[i % TO.length]}vh`,
+          scrollTrigger: {
+            trigger: grid,
+            start: "top bottom",
+            end: "bottom top",
+            scrub: true,
+          },
+        });
+      }, grid);
+    };
+
+    build();
+    let lastLg = window.matchMedia("(min-width: 1024px)").matches;
+    const onResize = () => {
+      const isLg = window.matchMedia("(min-width: 1024px)").matches;
+      if (isLg === lastLg) return;
+      lastLg = isLg;
+      ctx?.revert();
+      ctx = null;
+      build();
+    };
+    window.addEventListener("resize", onResize);
+    return () => {
+      window.removeEventListener("resize", onResize);
+      ctx?.revert();
+    };
+  }, []);
+
   return (
     <section className="px-15 pb-15">
       <div className="border-t-1px b-blue pt-50 lg:pt-100"></div>
@@ -115,7 +170,7 @@ export default function Projects() {
           </h2>
         </div>
       </div>
-      <div className="my-grid relative mt-130 gap-y-60 lg:pb-40">
+      <div ref={gridRef} className="my-grid relative mt-130 gap-y-60 lg:pb-40">
         <div ref={linesRef} className="hidden absolute top-0 left-0 w-full h-full my-grid lg:grid">
           {cases.map((item) => (
             <div
@@ -127,7 +182,7 @@ export default function Projects() {
         {cases.map((item, i) => (
           <div
             key={item.index}
-            className="col-span-full lg:col-span-4 lg:pl-15 lg:pr-65 lg:pb-[10vh]"
+            className="col-span-full lg:col-span-4 lg:pl-15 lg:pr-65 lg:pb-[32vh]"
             data-project-index={i}
           >
             <div className="flex justify-between text-blue font-normal font-gta-mono fs-12 leading-none tracking-[0] uppercase lg:pr-12">

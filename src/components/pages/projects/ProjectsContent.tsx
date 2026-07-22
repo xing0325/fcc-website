@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
-import DitheredImage from "@/components/DitheredImage";
+import DitheredImage, { type DitheredImageRef } from "@/components/DitheredImage";
 import { TopRightArrowIcon } from "@/components/icons";
 import { gsap } from "@/lib/gsapSetup";
 import { useAnim } from "@/lib/anim";
@@ -69,6 +69,21 @@ const pageTitleCss = `
 `;
 
 function ProjectCard({ project }: { project: Project }) {
+  const imageRef = useRef<DitheredImageRef>(null);
+
+  // Hover drives the shader's per-image dither mix straight to the original
+  // texture (1 → 0) instead of fading a plain <img> overlay on top.
+  const toOriginal = () => {
+    const amount = imageRef.current?.ditherAmount;
+    if (!amount) return;
+    gsap.to(amount, { value: 0, duration: 0.5, ease: "power4.out", overwrite: true });
+  };
+  const toDither = () => {
+    const amount = imageRef.current?.ditherAmount;
+    if (!amount) return;
+    gsap.to(amount, { value: 1, duration: 0.5, ease: "power4.out", overwrite: true });
+  };
+
   return (
     <div
       className={`col-span-full relative lg:self-start ${
@@ -79,14 +94,12 @@ function ProjectCard({ project }: { project: Project }) {
         className="relative"
         data-project-parallax={project.parallax ? "" : undefined}
       >
-        <div className="overflow-hidden relative group w-full aspect-[382/257]">
-          <DitheredImage src={project.image} alt={project.title} />
-          {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img
-            src={project.image}
-            alt=""
-            className="absolute inset-0 w-full h-full object-cover opacity-0 transition-opacity duration-500 group-hover:opacity-100"
-          />
+        <div
+          className="overflow-hidden relative group w-full aspect-[382/257]"
+          onMouseEnter={toOriginal}
+          onMouseLeave={toDither}
+        >
+          <DitheredImage ref={imageRef} src={project.image} alt={project.title} />
           <div
             className="bg-white border-[0.5px] b-blue absolute bottom-0 right-0 flex-center scale-0 origin-bottom-right will-change-transform transition-transform duration-500 group-hover:scale-100"
             style={{ width: "3.75rem", height: "3.75rem" }}

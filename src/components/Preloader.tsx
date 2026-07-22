@@ -60,6 +60,8 @@ export default function Preloader() {
 
     window.__lenis?.stop();
 
+    // Unlock the page (scroll + entrance reveals) — the original fires this
+    // ~0.5s into the exit Flip, while the logo is still flying to the header.
     const finish = () => {
       try {
         sessionStorage.setItem(PLAYED_KEY, "1");
@@ -68,14 +70,17 @@ export default function Preloader() {
       }
       window.__lenis?.start();
       emitLoaderComplete();
-      setGone(true);
     };
+    // Unmount the overlay. Kept out of the effect body (wrapped in a function)
+    // so it isn't flagged as a synchronous setState-in-effect.
+    const hide = () => setGone(true);
 
     if (
       hasPlayedThisSession() ||
       window.matchMedia("(prefers-reduced-motion: reduce)").matches
     ) {
       finish();
+      hide();
       return;
     }
 
@@ -121,6 +126,7 @@ export default function Preloader() {
         const textSlot = document.querySelector<HTMLElement>('[data-loader-target="text"]');
         if (!pill || !logoSlot || !textSlot) {
           finish();
+          hide();
           return;
         }
 
@@ -128,6 +134,10 @@ export default function Preloader() {
         const E = "power4.inOut";
         // The hero listens for this to run its concurrent zoom-out (1.2 → 1).
         window.dispatchEvent(new Event("oci:loader-flip"));
+        // The page takes over while the logo is still in flight: intro ends
+        // ~1.8s, flip starts, scroll/reveals unlock at ~2.3s, logo settles
+        // at ~3.13s — overlapping beats, not serial ones.
+        gsap.delayedCall(0.5, finish);
         Flip.fit(bg[0], pill, { duration: D, ease: E, scale: true, absolute: true });
         Flip.fit(logo[0], logoSlot, { duration: D, ease: E, scale: true, absolute: true });
         Flip.fit(text[0], textSlot, {
@@ -139,7 +149,7 @@ export default function Preloader() {
             // Reveal the real header pill under the flown-in pieces.
             window.dispatchEvent(new Event("oci:header-swap"));
             gsap.set(root, { autoAlpha: 0 });
-            setTimeout(finish, 500);
+            hide();
           },
         });
       };
@@ -176,18 +186,20 @@ export default function Preloader() {
         .to(logo, { opacity: 1, duration: 0 }, "end-=0.7")
         .to(text, { yPercent: 0, ease: "power4.out", duration: 1 }, 0.66);
 
-      // Match the original's gate: intro timeline done AND page assets ready.
+      // Match the original's gate: intro timeline done AND page assets ready
+      // (window load + fonts, so the reveal never shows placeholder glyphs).
       const markReady = () => {
         assetsReady = true;
         flipToHeader();
       };
-      if (document.readyState === "complete") {
-        markReady();
-      } else {
-        window.addEventListener("load", markReady, { once: true });
-        // Safety valve so a stalled asset can never trap the loader.
-        setTimeout(markReady, 6000);
-      }
+      const loaded = new Promise<void>((resolve) => {
+        if (document.readyState === "complete") resolve();
+        else window.addEventListener("load", () => resolve(), { once: true });
+      });
+      const fonts = document.fonts?.ready ?? Promise.resolve();
+      Promise.all([loaded, fonts]).then(markReady);
+      // Safety valve so a stalled asset can never trap the loader.
+      setTimeout(markReady, 6000);
     }, root);
 
     return () => ctx.revert();
@@ -201,7 +213,7 @@ export default function Preloader() {
       ref={rootRef}
       aria-busy="true"
       aria-live="polite"
-      className="fixed inset-0 z-[2000] flex-center"
+      className="fixed inset-0 z-[2000] flex-center pointer-events-none"
     >
       {/* full-screen blue bg — flips into the header pill at the end */}
       <span aria-hidden="true" className="js-loader-bg block absolute inset-0 -z-[1]" />

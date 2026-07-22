@@ -39,7 +39,9 @@ function Stat({
 }
 
 export default function IntroBlue() {
-  const mainRef = useAnim<HTMLParagraphElement>("lineUp");
+  // Chinese wraps to many lines; keep the 0.8s power4.out line reveal but
+  // cut the inter-line stagger so total stagger stays ≤0.4s (~7 lines × 0.06).
+  const mainRef = useAnim<HTMLParagraphElement>("lineUp", { stagger: 0.06 });
   const stairsRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {

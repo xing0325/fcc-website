@@ -1,9 +1,19 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useLayoutEffect, useRef, useState } from "react";
+
+// useLayoutEffect on the client (seat menu state before paint), useEffect on
+// the server render pass to avoid React's SSR warning.
+const useIsomorphicLayoutEffect =
+  typeof window !== "undefined" ? useLayoutEffect : useEffect;
 import { LogoIcon } from "@/components/icons";
 import ScrambleText from "@/components/ScrambleText";
+import { gsap } from "@/lib/gsapSetup";
 import { onLoaderComplete } from "@/lib/loaderBus";
+
+// Compliant eases (see fcc-motion-brief): power4.out for entrance/interaction,
+// power4.inOut for large state changes.
+const EASE_INOUT_CSS = "cubic-bezier(0.86,0,0.07,1)";
 
 type NavLink = { href: string; label: string };
 
@@ -39,6 +49,9 @@ export default function SiteHeader() {
   const [swapped, setSwapped] = useState(false);
   // entered: loader fully complete → nav links may scramble in.
   const [entered, setEntered] = useState(false);
+  // The white overlay panel — driven directly by GSAP (three-beat open sequence).
+  const panelInnerRef = useRef<HTMLDivElement>(null);
+  const firstRunRef = useRef(true);
 
   useEffect(() => {
     const onSwap = () => setSwapped(true);
@@ -59,9 +72,9 @@ export default function SiteHeader() {
     };
   }, []);
 
-  // Header collapse: hide the link columns / show the MENU pill past 30px.
+  // Header collapse: hide the link columns / show the MENU pill past 20px.
   useEffect(() => {
-    const onScroll = () => setCollapsed(window.scrollY > 30);
+    const onScroll = () => setCollapsed(window.scrollY > 20);
     onScroll();
     window.addEventListener("scroll", onScroll, { passive: true });
     return () => window.removeEventListener("scroll", onScroll);
@@ -77,7 +90,8 @@ export default function SiteHeader() {
     return () => window.removeEventListener("keydown", onKey);
   }, [open]);
 
-  // Scroll lock while the overlay is open.
+  // Scroll lock while the overlay is open (stops Lenis; the html overflow lock
+  // stays as a belt-and-braces fallback for native scroll).
   useEffect(() => {
     if (!open) return;
     const el = document.documentElement;
@@ -86,6 +100,73 @@ export default function SiteHeader() {
     return () => {
       el.style.overflow = prev;
     };
+  }, [open]);
+
+  // Three-beat menu open (OCI cadence), GSAP-driven so the panel push and the
+  // link/secondary reveals share one clock. Close pushes the panel back out —
+  // it does NOT reverse the link stagger (per brief: 关闭反向). Layout effect so
+  // the mount seats the closed transform before first paint (no open-panel
+  // flash), and GSAP alone ever writes this element's transform.
+  useIsomorphicLayoutEffect(() => {
+    const inner = panelInnerRef.current;
+    if (!inner) return;
+    const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    const lines = inner.querySelectorAll<HTMLElement>(".menu-primary-line");
+    const seconds = inner.querySelectorAll<HTMLElement>("[data-menu-second]");
+
+    gsap.killTweensOf([inner, ...lines, ...seconds]);
+
+    // First run = mount: just seat the closed state, never touch Lenis (the
+    // loader/LenisProvider own the initial lock).
+    if (firstRunRef.current) {
+      firstRunRef.current = false;
+      gsap.set(inner, { xPercent: 101 });
+      gsap.set(lines, { yPercent: 100 });
+      gsap.set(seconds, { y: 24, opacity: 0 });
+      return;
+    }
+
+    if (open) {
+      window.__lenis?.stop();
+      if (reduce) {
+        gsap.set(inner, { xPercent: 0 });
+        gsap.set(lines, { yPercent: 0 });
+        gsap.set(seconds, { y: 0, opacity: 1 });
+        return;
+      }
+      const tl = gsap.timeline();
+      // Beat 1 — panel slides in as one block, 1s power4.inOut.
+      tl.fromTo(inner, { xPercent: 101 }, { xPercent: 0, duration: 1, ease: "power4.inOut" }, 0);
+      // Beat 2 — primary links begin at ~0.5s, 0.3s each, stagger amount 0.2.
+      tl.fromTo(
+        lines,
+        { yPercent: 100 },
+        { yPercent: 0, duration: 0.3, ease: "power4.out", stagger: { amount: 0.2 } },
+        0.5,
+      );
+      // Beat 3 — secondary info (Company col + contact) drops in AFTER the links.
+      tl.fromTo(
+        seconds,
+        { y: 24, opacity: 0 },
+        { y: 0, opacity: 1, duration: 0.5, ease: "power4.out", stagger: 0.08 },
+        1.0,
+      );
+    } else {
+      window.__lenis?.start();
+      if (reduce) {
+        gsap.set(inner, { xPercent: 101 });
+        return;
+      }
+      gsap.to(inner, {
+        xPercent: 101,
+        duration: 0.6,
+        ease: "power4.inOut",
+        onComplete: () => {
+          gsap.set(lines, { yPercent: 100 });
+          gsap.set(seconds, { y: 24, opacity: 0 });
+        },
+      });
+    }
   }, [open]);
 
   const showLinks = !collapsed;
@@ -108,8 +189,8 @@ export default function SiteHeader() {
                 showLinks ? "translate-y-0" : "translate-y-[110%]"
               }`}
               style={{
-                transitionDuration: "0.4s",
-                transitionTimingFunction: "ease",
+                transitionDuration: "0.5s",
+                transitionTimingFunction: EASE_INOUT_CSS,
                 transitionDelay: `${(delayOffset + i) * 40}ms`,
               }}
             >
@@ -213,33 +294,37 @@ export default function SiteHeader() {
             left at the lg column-7 line) and grows leftward from the right edge. */}
         <div
           aria-hidden={!open}
-          className={`fixed top-64 right-15 bottom-15 left-15 lg:left-[calc(50vw_+_7.5px)] ${
+          className={`fixed top-64 right-15 bottom-15 left-15 overflow-hidden lg:left-[calc(50vw_+_7.5px)] ${
             open ? "pointer-events-auto" : "pointer-events-none"
           }`}
         >
           <div
+            ref={panelInnerRef}
             data-lenis-prevent
-            className={`h-full w-full overflow-y-auto overflow-x-hidden pt-50 px-24 pb-26 bg-white ${
-              open ? "is-inview" : ""
-            }`}
-            style={{
-              clipPath: open ? "inset(0 0 0 0)" : "inset(0 0 0 100%)",
-              transition: "clip-path 0.6s cubic-bezier(0.19, 1, 0.22, 1)",
-            }}
+            data-menu-panel
+            /* Closed state is seated by GSAP in a layout effect before first
+               paint (no flash). Deliberately NO transform here — an inline
+               `style` gets re-applied by React on every `open` change and snaps
+               the panel shut, a Tailwind `translate-x` class maps to the CSS
+               `translate` property that stacks on GSAP's `transform`, and a
+               percent transform in a stylesheet is one GSAP can't parse so it
+               preserves it as a prefix (doubling the offset). GSAP owning the
+               transform outright is the only combination that doesn't fight. */
+            className="menu-panel h-full w-full overflow-y-auto overflow-x-hidden pt-50 px-24 pb-26 bg-white will-change-transform"
           >
             <ul className="text-blue flex flex-col items-start" role="menubar">
-              {primaryLinks.map((link, i) => (
+              {primaryLinks.map((link) => (
                 <li key={link.href} className="overflow-hidden flex flex-col relative pr-20 pl-20 -ml-20" role="none">
-                  <span className="block relative reveal-line" style={{ transitionDelay: `${100 + i * 60}ms` }}>
+                  <span className="menu-primary-line block relative will-change-transform">
                     <a
                       href={link.href}
                       role="menuitem"
                       tabIndex={open ? 0 : -1}
-                      className="group relative block text-blue font-pp-neue font-normal text-[2.25rem] leading-[1.2] tracking-[0] lg:text-[2.875rem] transition-opacity duration-500 hover:opacity-60"
+                      className="group relative block text-blue font-pp-neue font-normal text-[2.25rem] leading-[1.2] tracking-[0] lg:text-[2.875rem] transition-[opacity,transform] duration-500 ease-[cubic-bezier(0.23,1,0.32,1)] hover:opacity-50 hover:translate-x-12"
                     >
                       <span
                         aria-hidden="true"
-                        className="absolute top-1/2 -left-18 -translate-y-1/2 -translate-x-6 opacity-0 transition-[opacity,translate] duration-200 group-hover:translate-x-0 group-hover:opacity-100"
+                        className="absolute top-1/2 -left-18 -translate-y-1/2 -translate-x-6 opacity-0 transition-[opacity,transform] duration-500 ease-[cubic-bezier(0.23,1,0.32,1)] group-hover:translate-x-0 group-hover:opacity-100"
                       >
                         ·
                       </span>
@@ -249,8 +334,8 @@ export default function SiteHeader() {
                 </li>
               ))}
             </ul>
-            <hr className="mt-74 b-blue lg:mt-160" />
-            <section className="mt-30 lg:flex lg:mt-15">
+            <hr data-menu-second className="mt-74 b-blue lg:mt-160" />
+            <section data-menu-second className="mt-30 lg:flex lg:mt-15">
               <div className="lg:w-full">
                 <h2 className="font-gta-mono font-normal uppercase text-blue tracking-[0] fs-12 leading-[1.33]">Company</h2>
               </div>
@@ -269,8 +354,8 @@ export default function SiteHeader() {
                 ))}
               </ul>
             </section>
-            <hr className="mt-50 b-blue lg:mt-38" />
-            <section className="mt-30 lg:flex lg:mt-15">
+            <hr data-menu-second className="mt-50 b-blue lg:mt-38" />
+            <section data-menu-second className="mt-30 lg:flex lg:mt-15">
               <div className="lg:w-1/2">
                 <h2 className="font-gta-mono font-normal uppercase text-blue tracking-[0] fs-12 leading-[1.33] mb-30">Stay in touch</h2>
               </div>

@@ -27,6 +27,8 @@ export interface DitheredImageRef {
   showDither(): void;
   /** tweenable zoom uniform, e.g. hero's 1.2 → 1 (null without WebGL) */
   zoom: { value: number } | null;
+  /** tweenable dither mix, 1 = dithered / 0 = original (null without WebGL) */
+  ditherAmount: { value: number } | null;
 }
 
 export interface DitheredImageProps {
@@ -55,6 +57,9 @@ const DitheredImage = forwardRef<DitheredImageRef, DitheredImageProps>(
       showDither: () => handleRef.current?.showDither(),
       get zoom() {
         return handleRef.current?.zoom ?? null;
+      },
+      get ditherAmount() {
+        return handleRef.current?.ditherAmount ?? null;
       },
     }));
 

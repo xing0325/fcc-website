@@ -25,9 +25,9 @@ export default function FlipArrowLink({
       <span className="relative inline-block overflow-hidden mx-10 align-baseline">
         <ArrowIcon
           aria-hidden
-          className="icon absolute left-0 top-1/2 -translate-y-1/2 w-14 h-8 [translate:-26px_0] group-hover:[translate:0_0] transition-[translate] duration-[0.5s] ease-[cubic-bezier(0.19,1,0.22,1)]"
+          className="icon absolute left-0 top-1/2 -translate-y-1/2 w-14 h-8 [translate:-26px_0] group-hover:[translate:0_0] transition-[translate] duration-[0.5s] ease-[cubic-bezier(0.23,1,0.32,1)]"
         />
-        <span className="inline-flex items-baseline transition-transform duration-[0.5s] ease-[cubic-bezier(0.19,1,0.22,1)] group-hover:translate-x-25">
+        <span className="inline-flex items-baseline transition-transform duration-[0.5s] ease-[cubic-bezier(0.23,1,0.32,1)] group-hover:translate-x-25">
           <span>{label}</span>
           <ArrowIcon
             aria-hidden

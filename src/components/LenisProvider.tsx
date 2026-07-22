@@ -3,6 +3,7 @@
 import { type ReactNode, useEffect } from "react";
 import Lenis from "lenis";
 import { gsap, ScrollTrigger } from "@/lib/gsapSetup";
+import { isLoaderComplete } from "@/lib/loaderBus";
 
 declare global {
   interface Window {
@@ -16,11 +17,18 @@ export default function LenisProvider({ children }: { children: ReactNode }) {
     // Same wiring as the original Nuxt app: Lenis is stepped from GSAP's
     // ticker (so scrub tweens and scroll position always agree on a frame)
     // and ScrollTrigger recomputes on every smoothed scroll step.
-    const lenis = new Lenis();
+    // syncTouch matches the original: touch scrolling runs through the same
+    // smoothing as wheel, so mobile and desktop share one feel.
+    const lenis = new Lenis({ syncTouch: true });
     lenis.on("scroll", ScrollTrigger.update);
     const tick = (time: number) => lenis.raf(time * 1000);
     gsap.ticker.add(tick);
     gsap.ticker.lagSmoothing(0);
+
+    // The Preloader's effect runs before this one, so its lenis.stop() was a
+    // no-op — if the loader is still playing, start locked and let the
+    // loader's finish() unlock.
+    if (!isLoaderComplete()) lenis.stop();
 
     window.__lenis = lenis;
     window.dispatchEvent(new Event("lenis:ready"));
