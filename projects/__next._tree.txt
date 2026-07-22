@@ -1,0 +1,5 @@
+:HL["/fcc-website/_next/static/chunks/0e2v4-_vgsv3c.css","style"]
+:HL["/fcc-website/_next/static/media/GTAmericaMono_Regular-s.p.11_-mkrpondds.woff2","font",{"crossOrigin":"","type":"font/woff2"}]
+:HL["/fcc-website/_next/static/media/PPNeueMontreal_Medium-s.p.3mc8tnum1kv1v.woff2","font",{"crossOrigin":"","type":"font/woff2"}]
+:HL["/fcc-website/_next/static/media/PPNeueMontreal_Regular-s.p.1gfk2d0eooq5f.woff2","font",{"crossOrigin":"","type":"font/woff2"}]
+0:{"tree":{"name":"","param":null,"prefetchHints":16,"slots":{"children":{"name":"projects","param":null,"prefetchHints":0,"slots":{"children":{"name":"__PAGE__","param":null,"prefetchHints":0,"slots":null}}}}},"staleTime":300,"buildId":"8P7d60Yu_jeCd4yz3louK"}
